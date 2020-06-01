@@ -19,12 +19,16 @@
     flex-direction: column;
     justify-content: space-between;
   }
-  
+
   header {
     padding: 1em;
     position: relative;
     height: 225px;
-    background: linear-gradient(110deg, var(--primary-color-light) 0 30%, var(--primary-color-dark) 30% 100%);
+    background: linear-gradient(
+      110deg,
+      var(--primary-color-light) 0 30%,
+      var(--primary-color-dark) 30% 100%
+    );
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 10vw));
     text-align: right;
   }
@@ -67,7 +71,7 @@
   .point > svg {
     flex-shrink: 0;
     display: inline-block;
-    background-color: var(--primary-color-dark) ;
+    background-color: var(--primary-color-dark);
     color: white;
     border-radius: 50%;
     padding: 0.5em;
@@ -85,10 +89,15 @@
 
   @media (min-width: 768px) {
     header {
-      height: 200px;
-      background: linear-gradient(70deg, var(--primary-color-light) 0 40%, var(--primary-color-dark) 40% 100%);
-      clip-path: polygon(0 35%, 100% 0, 100% 100%, 0 calc(100% - 3vw));
-      margin-top: -2em;
+      height: 230px;
+      background: linear-gradient(
+        70deg,
+        var(--primary-color-light) 0 40%,
+        var(--primary-color-dark) 40% 100%
+      );
+      clip-path: polygon(0 0, 100% calc(6vw), 100% 100%, 0 calc(100% - 6vw));
+      margin-top: -3em;
+      padding-top: calc(7vw);
     }
 
     section#design-install {
@@ -97,6 +106,10 @@
 
     section#design-install > * {
       width: 45%;
+    }
+
+    section#projects {
+      margin-top: -4em;
     }
 
     section#projects > .subsections {
@@ -121,69 +134,6 @@
 <section id="border" />
 
 <section id="design-install">
-  <div id="design">
-    <h1>design</h1>
-    <div class="point">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
-        <line x1="16" y1="8" x2="2" y2="22" />
-        <line x1="17.5" y1="15" x2="9" y2="15" />
-      </svg>
-      <span>
-        APIs are lightweight and modular, making porting faster and game
-        instances leaner
-      </span>
-    </div>
-    <div class="point">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="16" x2="12" y2="12" />
-        <line x1="12" y1="8" x2="12.01" y2="8" />
-      </svg>
-      <span>
-        We target snapshots as well, allowing for snappier mod updates and more
-        informed community
-      </span>
-    </div>
-    <div class="point">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <path
-          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0
-          0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0
-          0-7.78z" />
-      </svg>
-      <span>
-        All parts of Fabric are fully free for everyone to use to any extent!
-      </span>
-    </div>
-  </div>
   <div id="install">
     <h1>install</h1>
     <p>
@@ -228,6 +178,69 @@
         <ExternalLink
           href="https://curseforge.com/minecraft/mc-mods/fabric-api"
           text="Download Fabric API" />
+      </span>
+    </div>
+  </div>
+  <div id="design">
+    <h1>design</h1>
+    <div class="point">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
+        <line x1="16" y1="8" x2="2" y2="22" />
+        <line x1="17.5" y1="15" x2="9" y2="15" />
+      </svg>
+      <span>
+        APIs are lightweight and modular, making porting faster and game
+        instances leaner
+      </span>
+    </div>
+    <div class="point">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+      <span>
+        We target new snapshots as well as releases, allowing for snappier mod
+        updates and more informed community
+      </span>
+    </div>
+    <div class="point">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0
+          0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0
+          0-7.78z" />
+      </svg>
+      <span>
+        All Fabric projects are free and open-source, and anyone can contribute!
       </span>
     </div>
   </div>
