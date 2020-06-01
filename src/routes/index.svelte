@@ -8,9 +8,9 @@
     height: 1em;
     background: linear-gradient(
       110deg,
-      #a67c52 0 30%,
-      #c69c6d 30% 55%,
-      #a67c52 55% 100%
+      var(--primary-color-dark) 0 30%,
+      var(--primary-color-light) 30% 55%,
+      var(--primary-color-dark) 55% 100%
     );
   }
 
@@ -24,7 +24,7 @@
     padding: 1em;
     position: relative;
     height: 225px;
-    background: linear-gradient(110deg, #c69c6d 0 30%, #a67c52 30% 100%);
+    background: linear-gradient(110deg, var(--primary-color-light) 0 30%, var(--primary-color-dark) 30% 100%);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 10vw));
     text-align: right;
   }
@@ -67,7 +67,7 @@
   .point > svg {
     flex-shrink: 0;
     display: inline-block;
-    background-color: #a67c52;
+    background-color: var(--primary-color-dark) ;
     color: white;
     border-radius: 50%;
     padding: 0.5em;
@@ -86,7 +86,7 @@
   @media (min-width: 768px) {
     header {
       height: 200px;
-      background: linear-gradient(70deg, #c69c6d 0 40%, #a67c52 40% 100%);
+      background: linear-gradient(70deg, var(--primary-color-light) 0 40%, var(--primary-color-dark) 40% 100%);
       clip-path: polygon(0 35%, 100% 0, 100% 100%, 0 calc(100% - 3vw));
       margin-top: -2em;
     }

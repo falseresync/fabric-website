@@ -1,3 +1,8 @@
+:root {
+	--primary-color-light: #97907e;
+	--primary-color-dark: #7a715d;
+}
+
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -48,7 +53,7 @@ ul {
 }
 
 ::marker {
-    color: #c69c6d;
+    color: var(--primary-color-light);
     font-size: 1.25em;
 }
 
