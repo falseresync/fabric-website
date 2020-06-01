@@ -1,0 +1,15 @@
+{
+	"background_color": "#ffffff",
+	"theme_color": "#C69C6D",
+	"name": "FabricMC",
+	"short_name": "FabricMC",
+	"display": "minimal-ui",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "logo.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		}
+	]
+}
