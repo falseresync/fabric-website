@@ -3,6 +3,23 @@
 </script>
 
 <style>
+  section#border {
+    width: 100%;
+    height: 1em;
+    background: linear-gradient(
+      110deg,
+      #a67c52 0 30%,
+      #c69c6d 30% 55%,
+      #a67c52 55% 100%
+    );
+  }
+
+  section#design-install {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
   header {
     padding: 1em;
     position: relative;
@@ -20,23 +37,6 @@
     color: white;
     margin: 0;
     font-size: 1.5em;
-  }
-
-  section#border {
-    width: 100%;
-    height: 1em;
-    background: linear-gradient(
-      110deg,
-      #a67c52 0 30%,
-      #c69c6d 30% 55%,
-      #a67c52 55% 100%
-    );
-  }
-
-  section#design-install {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
   section#projects {
