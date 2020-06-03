@@ -15,7 +15,7 @@ const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 
 const aliases = alias({
-	resolve: ['.svelte', '.js'], //optional, by default this will just look for .js files or folders
+	resolve: ['.svelte', '.js'],
 	entries: [
 		{ find: '@', replacement: 'src' },
 		{ find: '~@', replacement: 'src/assets' },
@@ -34,7 +34,7 @@ export default {
 			svelte({
 				dev,
 				hydratable: true,
-				emitCss: true
+				emitCss: true,
 			}),
 			resolve({
 				browser: true,
@@ -63,7 +63,7 @@ export default {
 				module: true
 			}),
 
-			aliases
+			aliases,
 		],
 
 		preserveEntrySignatures: false,
@@ -80,13 +80,13 @@ export default {
 			}),
 			svelte({
 				generate: 'ssr',
-				dev
+				dev,
 			}),
 			resolve({
 				dedupe: ['svelte']
 			}),
 			commonjs(),
-			
+
 			aliases
 		],
 		external: Object.keys(pkg.dependencies).concat(
