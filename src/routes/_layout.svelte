@@ -27,6 +27,12 @@
 
   img {
     height: 1.5rem;
+    max-height: 1.5rem;
+  }
+
+  button > svg {
+    color: var(--text);
+    height: 2.5rem;
   }
 
   ul#nav-links {
