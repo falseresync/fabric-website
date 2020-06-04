@@ -1,7 +1,7 @@
 <script>
   import ExternalLink from "@/components/ExternalLink.svelte";
-
-  let downloadOptionId;
+  import { stores, goto } from "@sapper/app";
+  const { page } = stores();
 
   const downloadOptions = [
     {
@@ -29,6 +29,13 @@
       name: "Technic",
     },
   ];
+
+  let downloadOptionId = $page.query.download || "vanilla";
+  $: goto(
+    downloadOptionId == "vanilla"
+      ? "/"
+      : "/?download=" + downloadOptionId
+  );
 </script>
 
 <style>
@@ -260,12 +267,8 @@
         The Minecraft version can be selected in the installer, this download
         works for every version we support.
       </div>
-      <div class="point single-line">
-        <div class="icon">1</div>
-        <span>Download the Fabric Installer nearby.</span>
-      </div>
       <div class="point">
-        <div class="icon">2</div>
+        <div class="icon">1</div>
         <span>
           Open the Installer. In the window you need to configure the game and
           loader versions and the install location.
@@ -282,11 +285,15 @@
         </span>
       </div>
       <div class="point">
-        <div class="icon">3</div>
+        <div class="icon">2</div>
         <span>
           Press Install. A new game version and profile will be created in the
           launcher's menu, which you can now use to launch Fabric.
         </span>
+      </div>
+      <div class="point single-line">
+        <div class="icon">3</div>
+        <span>Put Fabric API into .minecraft/mods/ folder.</span>
       </div>
     {/if}
   </div>
