@@ -79,10 +79,6 @@
     height: 2.5rem;
   }
 
-  section#goals-and-ideas {
-    margin-top: -2rem;
-  }
-
   #blog > ul {
     margin-bottom: 1rem;
   }
@@ -109,6 +105,7 @@
     color: var(--text-white);
     flex-shrink: 0;
     height: 1.2rem;
+    overflow: visible;
     padding: 0.75rem;
     text-align: center;
     width: 1.2rem;
@@ -158,6 +155,10 @@
   }
 
   @media (min-width: 60rem) {
+    section#goals-and-ideas {
+      margin-top: -2rem;
+    }
+
     .columns {
       flex-direction: row;
     }
@@ -461,7 +462,7 @@
         </span>
         <small class="blogpost-meta">
           <span class="author">blog team</span>
-          <span class="timestamp">June 6, 2020</span>
+          <span class="timestamp">Jun 6, 2020</span>
         </small>
       </li>
       <li>
@@ -476,7 +477,7 @@
         </span>
         <small class="blogpost-meta">
           <span class="author">modmuss50</span>
-          <span class="timestamp">Jul 19, 2020</span>
+          <span class="timestamp">May 22, 2020</span>
         </small>
       </li>
     </ul>

@@ -29,7 +29,7 @@
     height: 1.5rem;
   }
 
-  ul {
+  ul#nav-links {
     align-items: center;
     display: none;
     flex-direction: column;
@@ -38,11 +38,11 @@
     padding: 0;
   }
 
-  ul.open {
+  ul#nav-links.open {
     display: flex;
   }
 
-  li {
+  ul#nav-links > li {
     margin: 1rem 0 0 0;
   }
 
@@ -66,6 +66,26 @@
     vertical-align: end;
   }
 
+  footer > *:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  #join-community > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #join-community > ul > li {
+    display: inline;
+    margin: auto 0;
+  }
+
+  #join-community > ul > li:not(:last-child):after {
+    content: "•";
+    margin: 0.25rem;
+  }
+
   #mojang-disclaimer {
     font-kerning: 1.2rem;
     text-transform: uppercase;
@@ -84,12 +104,12 @@
       display: none;
     }
 
-    ul {
+    ul#nav-links {
       display: flex;
       flex-direction: row;
     }
 
-    li {
+    ul#nav-links > li {
       margin: 0 0 0 2rem;
     }
   }
@@ -98,7 +118,7 @@
 <nav use:clickOutside on:clickOutside={(e) => (open = false)}>
   <div>
     <a href="." aria-current={segment === undefined ? 'page' : undefined}>
-      <img alt="Fabric Logo" src="logo-full.png" />
+      <img alt="Fabric Logo" id="fabric-logo-main" />
     </a>
     <button on:click={(e) => (open = !open)}>
       <svg
@@ -122,11 +142,9 @@
       </svg>
     </button>
   </div>
-  <ul class:open>
+  <ul id="nav-links" class:open>
     <li>
-      <a
-        href="blog"
-        aria-current={segment === 'blog' ? 'page' : undefined}>
+      <a href="blog" aria-current={segment === 'blog' ? 'page' : undefined}>
         blog
       </a>
     </li>
@@ -155,7 +173,24 @@
 </main>
 
 <footer>
-  <p id="license-disclaimer">
+  <div id="join-community">
+    <h3>join our community</h3>
+    <ul>
+      <li>
+        <ExternalLink href="https://discord.gg/v6v4pMv">Discord</ExternalLink>
+      </li>
+      <li>
+        <ExternalLink href="https://github.com/FabricMC">GitHub</ExternalLink>
+      </li>
+      <li>
+        <ExternalLink href="https://reddit.com/r/FabricMC">Reddit (Unofficial!)</ExternalLink>
+      </li>
+      <li>
+        #fabric at irc.esper.net
+      </li>
+    </ul>
+  </div>
+  <div id="license-disclaimer">
     <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
       <img
         alt="Creative Commons License"
@@ -169,9 +204,9 @@
       Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
       License
     </ExternalLink>
-  </p>
-  <p id="mojang-disclaimer">
+  </div>
+  <div id="mojang-disclaimer">
     Not an official Minecraft product. Not approved by or associated with
     Mojang.
-  </p>
+  </div>
 </footer>
