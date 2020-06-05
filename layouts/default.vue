@@ -86,6 +86,14 @@ body {
   padding: 0 1rem;
 }
 
+body::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--brand-light);
+}
+
 main {
   margin: 0 auto;
   max-width: 50rem;

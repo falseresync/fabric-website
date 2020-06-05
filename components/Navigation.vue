@@ -1,9 +1,9 @@
 <template>
   <nav>
     <div>
-      <router-link to="/">
+      <nuxt-link to="/">
         <img alt="Fabric Logo" id="fabric-logo-main" />
-      </router-link>
+      </nuxt-link>
       <button v-click-outside="hide" @click="toggle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,13 +30,13 @@
     </div>
     <ul id="nav-links" :class="{open : open}">
       <li>
-        <router-link to="/blog">blog</router-link>
+        <nuxt-link to="/blog">blog</nuxt-link>
       </li>
       <li>
-        <router-link to="/gradle-info">gradle info</router-link>
+        <nuxt-link to="/gradle-info">gradle info</nuxt-link>
       </li>
       <li>
-        <router-link to="/contribute">contribute</router-link>
+        <nuxt-link to="/contribute">contribute</nuxt-link>
       </li>
       <li>
         <external-link href="https://fabricmc.net/wiki/">wiki</external-link>
