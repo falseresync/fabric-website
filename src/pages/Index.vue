@@ -11,13 +11,16 @@
           follow the instructions nearby.
         </div>
         <div class="point">
-          <select v-model="downloadOption" id="downloads-launcher-chooser">
-            <option
-              v-for="option in downloadOptions"
-              :key="option.id"
-              :value="option.id"
-            >{{option.name}}</option>
-          </select>
+          <div>
+            <noscript>This feature requires JavaScript</noscript>
+            <select v-model="downloadOption" disabled ref="launcherDownloadChooser">
+              <option
+                v-for="option in downloadOptions"
+                :key="option.id"
+                :value="option.id"
+              >{{option.name}}</option>
+            </select>
+          </div>
         </div>
         <template v-if="downloadOption == 'vanilla'">
           <div class="point single-line">
@@ -325,7 +328,7 @@
 import ExternalLink from "~/components/ExternalLink";
 export default {
   metaInfo: {
-    title: 'Minecraft modding toolchain',
+    title: "Minecraft modding toolchain"
   },
   components: {
     ExternalLink
@@ -366,6 +369,8 @@ export default {
     if (hash[0] == "download") {
       this.downloadOption = hash[1];
     }
+
+    this.$refs.launcherDownloadChooser.removeAttribute("disabled");
   },
   watch: {
     downloadOption(newOption, oldOption) {
@@ -376,9 +381,6 @@ export default {
 </script>
 
 <style scoped>
-section {
-  padding: 1rem;
-}
 section#join-community {
   background: linear-gradient(
     110deg,

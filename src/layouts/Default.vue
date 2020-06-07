@@ -91,6 +91,9 @@ button {
   background: none;
   border: none;
 }
+section {
+  padding: 1rem;
+}
 select {
   -moz-appearance: none;
   -webkit-appearance: none;
