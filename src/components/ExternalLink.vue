@@ -23,14 +23,13 @@
 
 <script>
 export default {
-    props: ['href']
-}
+  props: ["href"]
+};
 </script>
 
 <style scoped>
-  a > svg {
-    height: 0.75em;
-    margin-bottom: -0.05em;
-    margin-left: -0.25em;
-  }
+a > svg {
+  height: 0.75em;
+  margin-bottom: -0.05em;
+}
 </style>

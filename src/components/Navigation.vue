@@ -1,9 +1,9 @@
 <template>
   <nav>
     <div>
-      <nuxt-link to="/">
-        <img alt="Fabric Logo" id="fabric-logo-main" />
-      </nuxt-link>
+      <g-link to="/">
+        <img alt="Fabric Logo" />
+      </g-link>
       <button v-click-outside="hide" @click="toggle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,13 +30,13 @@
     </div>
     <ul id="nav-links" :class="{open : open}">
       <li>
-        <nuxt-link to="/blog">blog</nuxt-link>
+        <g-link to="/blog">blog</g-link>
       </li>
       <li>
-        <nuxt-link to="/gradle-info">gradle info</nuxt-link>
+        <g-link to="/gradle-info">gradle info</g-link>
       </li>
       <li>
-        <nuxt-link to="/contribute">contribute</nuxt-link>
+        <g-link to="/contribute">contribute</g-link>
       </li>
       <li>
         <external-link href="https://fabricmc.net/wiki/">wiki</external-link>
@@ -46,35 +46,30 @@
 </template>
 
 <script>
-import ExternalLink from '@/components/ExternalLink'
-import ClickOutside from 'vue-click-outside'
-
+import ExternalLink from "~/components/ExternalLink";
+import ClickOutside from "vue-click-outside";
 export default {
   components: {
     ExternalLink
   },
-
   data() {
     return {
       segment: undefined,
       open: false
-    }
+    };
   },
-
   directives: {
     ClickOutside
   },
-
   methods: {
     toggle() {
-      this.open = !this.open
+      this.open = !this.open;
     },
-
     hide() {
-      this.open = false
+      this.open = false;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -83,29 +78,23 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 auto;
-  max-width: 50rem;
   padding: 1rem 0;
 }
-
 nav > div {
   align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-
 img {
-  content: url('~assets/fabric-logo-full.png');
+  content: url("~@/assets/fabric-logo-full.png");
   height: 1.5rem;
   max-height: 1.5rem;
 }
-
 button > svg {
   color: var(--text);
   height: 2.5rem;
 }
-
 ul#nav-links {
   align-items: center;
   display: none;
@@ -114,45 +103,36 @@ ul#nav-links {
   margin: 0;
   padding: 0;
 }
-
 ul#nav-links.open {
   display: flex;
 }
-
 ul#nav-links > li {
   margin: 1rem 0 0 0;
 }
-
 [aria-current] {
   text-decoration: underline;
 }
-
 @media (min-width: 60rem) {
   nav {
     flex-direction: row;
   }
-
   nav > div {
     width: auto;
   }
-
   button {
     display: none;
   }
-
   ul#nav-links {
     display: flex;
     flex-direction: row;
   }
-
   ul#nav-links > li {
     margin: 0 0 0 2rem;
   }
 }
-
 @media (prefers-color-scheme: dark) {
   img {
-    content: url('~assets/fabric-logo-full-white.png');
+    content: url("~@/assets/fabric-logo-full-white.png");
   }
 }
 </style>

@@ -38,13 +38,12 @@
 </template>
 
 <script>
-import ExternalLink from '@/components/ExternalLink'
-
+import ExternalLink from "~/components/ExternalLink";
 export default {
   components: {
     ExternalLink
   }
-}
+};
 </script>
 
 <style scoped>
@@ -53,32 +52,26 @@ footer {
   color: var(--text-grey);
   font-size: 0.75rem;
   margin: 3rem auto 0 auto;
-  max-width: 50rem;
   padding: 1rem 0;
   position: static;
   vertical-align: end;
 }
-
 footer > *:not(:first-child) {
   margin-top: 1rem;
 }
-
 #join-community > ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
 #join-community > ul > li {
   display: inline;
   margin: auto 0;
 }
-
 #join-community > ul > li:not(:last-child):after {
-  content: '•';
+  content: "•";
   margin: 0.25rem;
 }
-
 #mojang-disclaimer {
   font-kerning: 1.2rem;
   text-transform: uppercase;

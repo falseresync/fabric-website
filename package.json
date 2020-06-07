@@ -1,22 +1,13 @@
 {
   "name": "fabric-website",
-  "version": "1.0.0",
-  "description": "My superior Nuxt.js project",
-  "author": "Mikhail Oleynikov",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
+    "gridsome": "^0.7.0",
     "vue-click-outside": "^1.1.0"
-  },
-  "devDependencies": {
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "prettier": "^1.19.1"
   }
 }

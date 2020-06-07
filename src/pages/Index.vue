@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <layout>
     <div class="separator" id="separator-1" />
 
     <section id="download--install" class="columns">
@@ -124,10 +124,10 @@
     <section id="join-community">
       <h1>join our community</h1>
       <a href="https://discord.gg/v6v4pMv">
-        <img alt="Discord Logo" src="~assets/discord-logo.png" />
+        <g-image alt="Discord Logo" src="~/assets/discord-logo.png" />
       </a>
       <a href="https://github.com/FabricMC">
-        <img alt="GitHub Logo" src="~assets/github-logo.png" />
+        <g-image alt="GitHub Logo" src="~/assets/github-logo.png" />
       </a>
     </section>
 
@@ -302,7 +302,7 @@
             </small>
           </li>
         </ul>
-        <nuxt-link to="/blog" class="icon-button">
+        <g-link to="/blog" class="icon-button">
           <span>View all</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -315,72 +315,70 @@
           >
             <polyline points="9 18 15 12 9 6" />
           </svg>
-        </nuxt-link>
+        </g-link>
       </div>
     </section>
-  </main>
+  </layout>
 </template>
 
 <script>
-import ExternalLink from '@/components/ExternalLink'
-
+import ExternalLink from "~/components/ExternalLink";
 export default {
+  metaInfo: {
+    title: 'Minecraft modding toolchain',
+  },
   components: {
     ExternalLink
   },
-
   data() {
     return {
       downloadOptions: [
         {
-          id: 'vanilla',
-          name: 'Minecraft Launcher'
+          id: "vanilla",
+          name: "Minecraft Launcher"
         },
         {
-          id: 'server',
-          name: 'Minecraft Server'
+          id: "server",
+          name: "Minecraft Server"
         },
         {
-          id: 'multimc',
-          name: 'MultiMC'
+          id: "multimc",
+          name: "MultiMC"
         },
         {
-          id: 'atlauncher',
-          name: 'ATLauncher'
+          id: "atlauncher",
+          name: "ATLauncher"
         },
         {
-          id: 'mcupdater',
-          name: 'MCUpdater'
+          id: "mcupdater",
+          name: "MCUpdater"
         },
         {
-          id: 'technic',
-          name: 'Technic'
+          id: "technic",
+          name: "Technic"
         }
       ],
-      downloadOption: 'vanilla'
+      downloadOption: "vanilla"
+    };
+  },
+  mounted() {
+    let hash = this.$route.hash.substr(1).split("-");
+    if (hash[0] == "download") {
+      this.downloadOption = hash[1];
     }
   },
-
-  mounted() {
-    let hash = this.$route.hash.substr(1).split("-")
-    if (hash[0] == "download") {
-      this.downloadOption = hash[1]
-    }    
-  },
-
   watch: {
-    downloadOption (newOption, oldOption) {
-      this.$router.replace({ hash: "#download-" + newOption })
+    downloadOption(newOption, oldOption) {
+      this.$router.replace({ hash: "#download-" + newOption });
     }
   }
-}
+};
 </script>
 
 <style scoped>
 section {
   padding: 1rem;
 }
-
 section#join-community {
   background: linear-gradient(
     110deg,
@@ -393,34 +391,28 @@ section#join-community {
   padding: 0.5rem 2rem 1rem 0;
   text-align: right;
 }
-
 section#join-community > a {
   margin-left: 0.5rem;
 }
-
-section#join-community > a > img {
+section#join-community > a .g-image {
   height: 2.5rem;
+  width: 2.5rem;
 }
-
 #blog > ul {
   margin-bottom: 1rem;
 }
-
 .columns {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
 .point {
   display: flex;
   margin: 1rem auto;
 }
-
 .point.single-line {
   align-items: center;
 }
-
 .point > svg,
 .point > .icon {
   background: var(--brand-dark);
@@ -433,16 +425,13 @@ section#join-community > a > img {
   text-align: center;
   width: 1.2rem;
 }
-
 .point > .icon {
   font-weight: 600;
   line-height: 1.2rem;
 }
-
 .point > span {
   margin-left: 1rem;
 }
-
 .icon-button {
   align-items: center;
   border: 2px solid var(--brand-light);
@@ -452,40 +441,32 @@ section#join-community > a > img {
   padding: 0.5rem 1rem;
   text-decoration: none;
 }
-
 .icon-button:hover,
 .icon-button:focus {
   border-color: var(--brand-dark);
 }
-
 .icon-button > span {
   display: block;
 }
-
 .icon-button > svg {
   height: 1.2rem;
   margin-left: 1rem;
 }
-
 .blogpost-meta {
   display: block;
   margin: 0.25rem auto 0.25rem 0;
 }
-
 .blogpost-meta > .author:after {
-  content: '•';
+  content: "•";
   margin: 0 0.25rem;
 }
-
 @media (min-width: 60rem) {
   section#goals-and-ideas {
     margin-top: -2rem;
   }
-
   .columns {
     flex-direction: row;
   }
-
   .column {
     flex-basis: 47.5%;
   }
