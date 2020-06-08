@@ -365,16 +365,16 @@ export default {
     };
   },
   mounted() {
-    let hash = this.$route.hash.substr(1).split("-");
-    if (hash[0] == "download") {
-      this.downloadOption = hash[1];
+    let downloadOption = this.$route.query.download;
+    if (downloadOption != undefined) {
+      this.downloadOption = downloadOption;
     }
 
     this.$refs.launcherDownloadChooser.removeAttribute("disabled");
   },
   watch: {
     downloadOption(newOption, oldOption) {
-      this.$router.replace({ hash: "#download-" + newOption });
+      this.$router.replace({ query: { download: newOption } });
     }
   }
 };

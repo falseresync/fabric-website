@@ -1,8 +1,6 @@
 <template>
   <layout>
-    <noscript>
-      <h2>Most of the features on this page require JavaScript</h2>
-    </noscript>
+    <noscript v-html="`<h2>Most of the features on this page require JavaScript</h2>`" />
 
     <div id="separator-1" class="separator" />
     <section id="fabric-latest-versions">
@@ -235,9 +233,9 @@ export default {
     },
 
     selectVersion() {
-      let hash = this.$route.hash.substr(1).split("-");
-      if (hash[0] == "version") {
-        this.minecraftVersion = hash.slice(1).join("-");
+      let version = this.$route.query.version;
+      if (version != undefined) {
+        this.minecraftVersion = version;
       } else {
         for (let version of this.minecraftVersions) {
           if (version.stable) {
@@ -262,8 +260,8 @@ export default {
       }
     },
 
-    updateRouteHash(gameVersion) {
-      this.$router.replace({ hash: "#version-" + gameVersion });
+    updateRouteHash(version) {
+      this.$router.replace({ query: { version } });
     },
 
     fetchYarnVersion(gameVersion) {
