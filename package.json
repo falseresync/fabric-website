@@ -11,5 +11,12 @@
     "highlight.js": "^10.0.3",
     "strip-indent": "^3.0.0",
     "vue-click-outside": "^1.1.0"
-  }
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^3.8.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not ie > 0"
+  ]
 }

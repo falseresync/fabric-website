@@ -390,7 +390,7 @@ section#join-community {
   );
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 3vw));
   color: var(--text-white);
-  padding: 0.5rem 2rem 1rem 0;
+  padding: 0 1rem 1rem 1rem;
   text-align: right;
 }
 section#join-community > a {
@@ -403,57 +403,6 @@ section#join-community > a .g-image {
 #blog > ul {
   margin-bottom: 1rem;
 }
-.columns {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.point {
-  display: flex;
-  margin: 1rem auto;
-}
-.point.single-line {
-  align-items: center;
-}
-.point > svg,
-.point > .icon {
-  background: var(--brand-dark);
-  border-radius: 50%;
-  color: var(--text-white);
-  flex-shrink: 0;
-  height: 1.2rem;
-  overflow: visible;
-  padding: 0.75rem;
-  text-align: center;
-  width: 1.2rem;
-}
-.point > .icon {
-  font-weight: 600;
-  line-height: 1.2rem;
-}
-.point > span {
-  margin-left: 1rem;
-}
-.icon-button {
-  align-items: center;
-  border: 2px solid var(--brand-light);
-  border-radius: 2rem;
-  display: inline-flex;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-}
-.icon-button:hover,
-.icon-button:focus {
-  border-color: var(--brand-dark);
-}
-.icon-button > span {
-  display: block;
-}
-.icon-button > svg {
-  height: 1.2rem;
-  margin-left: 1rem;
-}
 .blogpost-meta {
   display: block;
   margin: 0.25rem auto 0.25rem 0;
@@ -463,14 +412,12 @@ section#join-community > a .g-image {
   margin: 0 0.25rem;
 }
 @media (min-width: 60rem) {
+  section#join-community {
+    padding-top: 0.2rem;
+  }
+
   section#goals-and-ideas {
     margin-top: -2rem;
-  }
-  .columns {
-    flex-direction: row;
-  }
-  .column {
-    flex-basis: 47.5%;
   }
 }
 </style>

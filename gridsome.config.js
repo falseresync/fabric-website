@@ -1,12 +1,14 @@
-// This is where project configuration and plugin options are located.
-// Learn more: https://gridsome.org/docs/config
-
-// Changes here require a server restart.
-// To restart press CTRL + C in terminal and run `gridsome develop`
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   siteName: 'Fabric',
   siteUrl: 'https://fabricmc.net',
   titleTemplate: 'Fabric - %s',
-  plugins: []
+  plugins: [],
+  chainWebpack: config => {
+    // UNCOMMENT FOR BUNDLE ANALYSIS REPORT
+    // config
+    //   .plugin('BundleAnalyzerPlugin')
+    //   .use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
+  }
 }

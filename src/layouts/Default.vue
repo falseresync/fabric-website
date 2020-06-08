@@ -24,6 +24,7 @@ export default {
   --brand-light: #97907e;
   --brand-dark: #7a715d;
   --background: #fffefa;
+  --background-grey: #faf6eb;
   --text: #1c1a18;
   --text-grey: #675645;
   --text-white: #fffefa;
@@ -35,7 +36,7 @@ export default {
   max-width: 50rem;
 }
 .separator {
-  height: 1rem;
+  height: 0.5rem;
 }
 .separator#separator-1 {
   background: linear-gradient(
@@ -60,6 +61,57 @@ export default {
     var(--brand-light) 60% 85%,
     var(--brand-dark) 85% 100%
   );
+}
+.columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.point {
+  display: flex;
+  margin: 1rem auto;
+}
+.point.single-line {
+  align-items: center;
+}
+.point > svg,
+.point > .icon {
+  background: var(--brand-dark);
+  border-radius: 50%;
+  color: var(--text-white);
+  flex-shrink: 0;
+  height: 1.2rem;
+  overflow: visible;
+  padding: 0.75rem;
+  text-align: center;
+  width: 1.2rem;
+}
+.point > .icon {
+  font-weight: 600;
+  line-height: 1.2rem;
+}
+.point > span {
+  margin-left: 1rem;
+}
+.icon-button {
+  align-items: center;
+  border: 2px solid var(--brand-light);
+  border-radius: 2rem;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+.icon-button:hover,
+.icon-button:focus {
+  border-color: var(--brand-dark);
+}
+.icon-button > span {
+  display: block;
+}
+.icon-button > svg {
+  height: 1.2rem;
+  margin-left: 1rem;
 }
 * {
   outline: none;
@@ -92,7 +144,7 @@ button {
   border: none;
 }
 section {
-  padding: 1rem;
+  margin-bottom: 1rem;
 }
 select {
   -moz-appearance: none;
@@ -151,6 +203,12 @@ ul > li:not(:last-child) {
 @media (min-width: 60rem) {
   body {
     padding: 0;
+  }
+  .columns {
+    flex-direction: row;
+  }
+  .column {
+    flex-basis: 47.5%;
   }
 }
 @media (prefers-color-scheme: dark) {
