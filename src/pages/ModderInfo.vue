@@ -114,7 +114,7 @@ export default {
     ExternalLink
   },
   metaInfo: {
-    title: "Gradle info"
+    title: "Modder info"
   },
   data() {
     return {

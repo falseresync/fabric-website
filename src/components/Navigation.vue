@@ -4,7 +4,7 @@
       <g-link to="/">
         <img alt="Fabric Logo" />
       </g-link>
-      <button v-click-outside="hide" @click="toggle">
+      <button @click="toggle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -28,12 +28,12 @@
         </svg>
       </button>
     </div>
-    <ul id="nav-links" :class="{open : open}">
+    <ul id="nav-links" v-click-outside="hide" :class="{open : open}">
       <li>
         <g-link to="/blog">blog</g-link>
       </li>
       <li>
-        <g-link to="/gradle-info">gradle info</g-link>
+        <g-link to="/modder-info">modder info</g-link>
       </li>
       <li>
         <g-link to="/contribute">contribute</g-link>
