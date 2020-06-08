@@ -4,7 +4,7 @@
       <g-link to="/">
         <img alt="Fabric Logo" />
       </g-link>
-      <button @click="toggle">
+      <button ref="hamburger" @click="toggle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -57,6 +57,9 @@ export default {
       segment: undefined,
       open: false
     };
+  },
+  mounted() {
+    this.popupItem = this.$refs.hamburger;
   },
   directives: {
     ClickOutside
