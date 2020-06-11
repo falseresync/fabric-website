@@ -126,7 +126,7 @@ export default {
         },
         buildscript: {
           name: "build.gradle",
-          syntax: "gradle"
+          syntax: "groovy"
         }
       },
       devEnv: {
