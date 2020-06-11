@@ -33,7 +33,7 @@
         <g-link to="/blog">blog</g-link>
       </li>
       <li>
-        <g-link to="/modder-info">modder info</g-link>
+        <g-link to="/modder-tools">modder tools</g-link>
       </li>
       <li>
         <g-link to="/contribute">contribute</g-link>

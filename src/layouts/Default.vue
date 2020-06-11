@@ -97,13 +97,20 @@ export default {
   align-items: center;
   border: 2px solid var(--brand-light);
   border-radius: 2rem;
+  cursor: pointer;
   display: inline-flex;
+  font-size: 1rem;
   justify-content: space-between;
   padding: 0.5rem 1rem;
   text-decoration: none;
 }
-.icon-button:hover,
-.icon-button:focus {
+
+.icon-button[disabled] {
+  cursor: not-allowed;
+}
+
+.icon-button:hover:not([disabled]),
+.icon-button:focus:not([disabled]) {
   border-color: var(--brand-dark);
 }
 .icon-button > span {
@@ -164,8 +171,11 @@ select {
 select > * {
   background-color: var(--background);
 }
-select:hover,
-select:focus {
+select[disabled] {
+  cursor: not-allowed;
+}
+select:hover:not([disabled]),
+select:focus:not([disabled]) {
   border-color: var(--brand-dark);
 }
 h1,

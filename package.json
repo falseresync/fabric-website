@@ -14,9 +14,5 @@
   },
   "devDependencies": {
     "webpack-bundle-analyzer": "^3.8.0"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "not ie > 0"
-  ]
+  }
 }

@@ -22,7 +22,7 @@
         </svg>
         <span>
           The recommended Loom version is
-          <strong>{{recommendedLoomVersion}}</strong>
+          <strong>{{devEnv.recommendedLoomVersion}}</strong>
         </span>
       </div>
 
@@ -51,8 +51,8 @@
         </span>
       </div>
 
-      <select v-model="minecraftVersion">
-        <option v-for="(item, i) in minecraftVersions" :key="i" :value="item">{{item}}</option>
+      <select v-model="devEnv.minecraftVersion">
+        <option v-for="(item, i) in devEnv.minecraftVersions" :key="i" :value="item">{{item}}</option>
       </select>
 
       <select v-model="tab">
@@ -87,8 +87,8 @@
         </span>
       </div>
 
-      <select v-model="minecraftVersion">
-        <option v-for="(item, i) in minecraftVersions" :key="i" :value="item">{{item}}</option>
+      <select v-model="devEnv.minecraftVersion">
+        <option v-for="(item, i) in devEnv.minecraftVersions" :key="i" :value="item">{{item}}</option>
       </select>
 
       <code
@@ -118,64 +118,72 @@ export default {
   },
   data() {
     return {
-      tab: "buildscript",
+      tab: "properties",
       tabs: {
-        buildscript: {
-          name: "build.gradle",
-          syntax: "gradle"
-        },
         properties: {
           name: "gradle.properties",
           syntax: "properties"
+        },
+        buildscript: {
+          name: "build.gradle",
+          syntax: "gradle"
         }
       },
-      recommendedLoomVersion: "0.4-SNAPSHOT",
-      minecraftVersions: [],
-      minecraftVersion: "<minecraftVersion>",
-      yarnVersion: "<yarnVersion>",
-      loaderVersion: "<loaderVersion>",
-      fabricMavenCoordinates: "<fabricMavenCoordinates>",
-      fabricVersion: "<fabricVersion>",
-      fabricBranches: {
-        mc1_16: {
-          breakpoint: null,
-          appendix: "1.16"
-        },
-        mc1_15: {
-          breakpoint: null,
-          appendix: "1.15"
-        },
-        mc1_14: {
-          breakpoint: null,
-          appendix: "1.14"
+      devEnv: {
+        recommendedLoomVersion: "0.4-SNAPSHOT",
+        minecraftVersions: [],
+        minecraftVersion: "[minecraftVersion]",
+        yarnVersion: "[yarnVersion]",
+        loaderVersion: "[loaderVersion]",
+        fabricMavenCoordinates: "[fabricMavenCoordinates]",
+        fabricVersion: "[fabricVersion]",
+        fabricBranches: {
+          mc1_16: {
+            breakpoint: null,
+            appendix: "1.16"
+          },
+          mc1_15: {
+            breakpoint: null,
+            appendix: "1.15"
+          },
+          mc1_14: {
+            breakpoint: null,
+            appendix: "1.14"
+          }
         }
       }
     };
   },
   computed: {
     tabContent() {
-      return this.tab == "buildscript" ? this.buildscript : this.properties;
+      return this.tab === "buildscript" ? this.buildscript : this.properties;
     },
     buildscript() {
       return stripIndent(`
         dependencies {
-          minecraft "com.mojang:minecraft:${this.minecraftVersion}"
-          mappings "net.fabricmc:yarn:${this.yarnVersion}:v2"
-          modImplementation "net.fabricmc:fabric-loader:${this.loaderVersion}"
-          modImplementation "${this.fabricMavenCoordinates}${this.fabricVersion}"
+          minecraft "com.mojang:minecraft:${this.devEnv.minecraftVersion}"
+          mappings "net.fabricmc:yarn:${this.devEnv.yarnVersion}:v2"
+          modImplementation "net.fabricmc:fabric-loader:${this.devEnv.loaderVersion}"
+          modImplementation "${this.devEnv.fabricMavenCoordinates}${this.devEnv.fabricVersion}"
         }
       `);
     },
     properties() {
       return stripIndent(`
-        minecraft_version=${this.minecraftVersion}
-        yarn_mappings=${this.yarnVersion}
-        loader_version=${this.loaderVersion}
-        fabric_version=${this.fabricVersion}
+        minecraft_version=${this.devEnv.minecraftVersion}
+        yarn_mappings=${this.devEnv.yarnVersion}
+        loader_version=${this.devEnv.loaderVersion}
+        fabric_version=${this.devEnv.fabricVersion}
       `);
     },
     migrateMappingsCommand() {
-      return "gradlew migrateMappings --mappings " + this.minecraftVersion;
+      return (
+        "gradlew migrateMappings --mappings " + this.devEnv.minecraftVersion
+      );
+    },
+    // This way it is not required to watch every change on devEnv object
+    watchableMinecraftVersion() {
+      return this.devEnv.minecraftVersion;
     }
   },
   async mounted() {
@@ -183,20 +191,20 @@ export default {
 
     await fetch("https://meta.fabricmc.net/v2/versions/game")
       .then(response => response.json())
-      .then(data => (this.minecraftVersions = data));
+      .then(data => (this.devEnv.minecraftVersions = data));
 
-    this.selectVersion();
+    this.selectMinecraftVersion();
 
-    this.minecraftVersions = this.minecraftVersions.map(
+    this.devEnv.minecraftVersions = this.devEnv.minecraftVersions.map(
       version => version.version
     );
 
     this.populateFabricBranchesBreakpoints();
   },
   watch: {
-    async minecraftVersion(newVersion, oldVersion) {
-      if (oldVersion != "<minecraftVersion>") {
-        this.updateRouteHash(newVersion);
+    async watchableMinecraftVersion(newVersion, oldVersion) {
+      if (oldVersion !== "[minecraftVersion]") {
+        this.updateQueryMinecraftVersion(newVersion);
       }
 
       this.fetchYarnVersion(newVersion);
@@ -206,18 +214,18 @@ export default {
       let fabricMavenCoordinates = "net.fabricmc.fabric-api:fabric-api:";
 
       // Old coordinates for MC 1.14 and older
-      for (let version of this.minecraftVersions) {
-        if (version == "1.14") {
+      for (let version of this.devEnv.minecraftVersions) {
+        if (version === "1.14") {
           fabricMavenMetadata =
             "https://maven.fabricmc.net/net/fabricmc/fabric/maven-metadata.xml";
           fabricMavenCoordinates = "net.fabricmc:fabric:";
           break;
-        } else if (version == newVersion) {
+        } else if (version === newVersion) {
           break;
         }
       }
 
-      this.fabricMavenCoordinates = fabricMavenCoordinates;
+      this.devEnv.fabricMavenCoordinates = fabricMavenCoordinates;
 
       this.fetchFabricVersion(
         fabricMavenMetadata,
@@ -229,17 +237,17 @@ export default {
     fetchLoaderVersion() {
       fetch("https://meta.fabricmc.net/v2/versions/loader?limit=1")
         .then(response => response.json())
-        .then(data => (this.loaderVersion = data[0].version));
+        .then(data => (this.devEnv.loaderVersion = data[0].version));
     },
 
-    selectVersion() {
+    selectMinecraftVersion() {
       let version = this.$route.query.version;
-      if (version != undefined) {
-        this.minecraftVersion = version;
+      if (version !== undefined) {
+        this.devEnv.minecraftVersion = version;
       } else {
-        for (let version of this.minecraftVersions) {
+        for (let version of this.devEnv.minecraftVersions) {
           if (version.stable) {
-            this.minecraftVersion = version.version;
+            this.devEnv.minecraftVersion = version.version;
             break;
           }
         }
@@ -247,21 +255,23 @@ export default {
     },
 
     populateFabricBranchesBreakpoints() {
-      for (let i = 0; i < this.minecraftVersions.length; i++) {
-        if (this.fabricBranches.mc1_14.breakpoint != null) {
+      for (let i = 0; i < this.devEnv.minecraftVersions.length; i++) {
+        if (this.devEnv.fabricBranches.mc1_14.breakpoint != null) {
           break;
         }
-        if (this.minecraftVersions[i] == "20w06a") {
-          this.fabricBranches.mc1_16.breakpoint = i;
-        } else if (this.minecraftVersions[i] == "19w34a") {
-          this.fabricBranches.mc1_15.breakpoint = i;
-          this.fabricBranches.mc1_14.breakpoint = i + 1;
+        if (this.devEnv.minecraftVersions[i] == "20w06a") {
+          this.devEnv.fabricBranches.mc1_16.breakpoint = i;
+        } else if (this.devEnv.minecraftVersions[i] == "19w34a") {
+          this.devEnv.fabricBranches.mc1_15.breakpoint = i;
+          this.devEnv.fabricBranches.mc1_14.breakpoint = i + 1;
         }
       }
     },
 
-    updateRouteHash(version) {
-      this.$router.replace({ query: { version } });
+    updateQueryMinecraftVersion(minecraftVersion) {
+      this.$router.replace({
+        query: { ...this.$route.query, minecraftVersion }
+      });
     },
 
     fetchYarnVersion(gameVersion) {
@@ -269,13 +279,16 @@ export default {
         "https://meta.fabricmc.net/v2/versions/yarn/" + gameVersion + "?limit=1"
       )
         .then(response => response.json())
-        .then(data => (this.yarnVersion = data[0].version));
+        .then(data => (this.devEnv.yarnVersion = data[0].version));
     },
 
     getFabricVersionAppendix(gameVersion) {
       let appendix = null;
-      for (let [_, branch] of Object.entries(this.fabricBranches)) {
-        if (this.minecraftVersions.indexOf(gameVersion) <= branch.breakpoint) {
+      for (let [_, branch] of Object.entries(this.devEnv.fabricBranches)) {
+        if (
+          this.devEnv.minecraftVersions.indexOf(gameVersion) <=
+          branch.breakpoint
+        ) {
           appendix = branch.appendix;
           break;
         }
@@ -312,7 +325,7 @@ export default {
             }
           }
 
-          this.fabricVersion = latestVersion;
+          this.devEnv.fabricVersion = latestVersion;
         });
     }
   },
@@ -344,6 +357,7 @@ code {
   display: block;
   font-size: 0.9rem;
   height: min-content;
+  margin: 1rem auto;
   max-width: 100%;
   overflow-x: auto;
   padding: 0.5rem 1.5rem;
@@ -352,6 +366,7 @@ code {
 
 @media (min-width: 60rem) {
   select {
+    margin-bottom: auto;
     margin-right: 1rem;
   }
 }
