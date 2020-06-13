@@ -23,12 +23,12 @@ export default {
 :root {
   --brand-light: #97907e;
   --brand-dark: #7a715d;
-  --background: #fffefa;
-  --background-grey: #faf6eb;
-  --text: #1c1a18;
+  --background: #fcfbf8;
+  --background-grey: #ece8db;
+  --text: #1f1a14;
   --text-grey: #675645;
   --text-white: #fffefa;
-  --text-black: #1c1a18;
+  --text-black: #1f1a14;
   font-size: 18px;
 }
 .container {
@@ -228,7 +228,7 @@ ul > li:not(:last-child) {
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1d1810;
+    --background: #1f1a14;
     --text: #fffefa;
     --text-grey: #ac957e;
   }

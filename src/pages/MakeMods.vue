@@ -3,7 +3,20 @@
     <noscript v-html="`<h2>Most of the features on this page require JavaScript</h2>`" />
 
     <div id="separator-1" class="separator" />
-    <section id="fabric-latest-versions">
+
+    <section class="columns" id="new-to-modding">
+      <div class="column">
+        <h1>new to modding?</h1>
+        <modding-intro class="column" />
+      </div>
+      <div class="column">
+        Nothing's here yet!
+      </div>
+    </section>
+
+    <div id="separator-3" class="separator" />
+    
+    <section id="dev-env-versions">
       <h1>dev env versions</h1>
 
       <div class="point single-line">
@@ -87,10 +100,6 @@
         </span>
       </div>
 
-      <select v-model="devEnv.minecraftVersion">
-        <option v-for="(item, i) in devEnv.minecraftVersions" :key="i" :value="item">{{item}}</option>
-      </select>
-
       <code
         v-highlight="{ content: migrateMappingsCommand, syntax: 'bash' }"
       >{{migrateMappingsCommand}}</code>
@@ -99,6 +108,7 @@
 </template>
 
 <script>
+import ModdingIntro from "~/components/subpages/ModdingIntro";
 import ExternalLink from "~/components/ExternalLink";
 import stripIndent from "strip-indent";
 import hljs from "highlight.js/lib/core";
@@ -111,10 +121,11 @@ hljs.registerLanguage("bash", bash);
 
 export default {
   components: {
+    ModdingIntro,
     ExternalLink
   },
   metaInfo: {
-    title: "Modder info"
+    title: "Make mods"
   },
   data() {
     return {

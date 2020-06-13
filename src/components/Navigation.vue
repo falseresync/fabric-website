@@ -30,13 +30,13 @@
     </div>
     <ul id="nav-links" v-click-outside="hide" :class="{open : open}">
       <li>
+        <g-link to="/">download</g-link>
+      </li>
+      <li>
         <g-link to="/blog">blog</g-link>
       </li>
       <li>
-        <g-link to="/modder-tools">modder tools</g-link>
-      </li>
-      <li>
-        <g-link to="/contribute">contribute</g-link>
+        <g-link to="/make-mods">make mods</g-link>
       </li>
       <li>
         <external-link href="https://fabricmc.net/wiki/">wiki</external-link>

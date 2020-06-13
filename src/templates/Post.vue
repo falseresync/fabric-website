@@ -1,6 +1,7 @@
 <template>
   <layout>
     <g-image class="cover-image" alt="Cover image" v-if="$page.post.cover_image" :src="$page.post.cover_image" />
+    <div class="separator" id="separator-1" v-else />
 
     <h1>{{ $page.post.title }}</h1>
 
@@ -64,6 +65,10 @@ query Post ($id: ID!) {
 .post-content {
   * {
     max-width: 100%;
+  }
+
+  a {
+    text-decoration: underline;
   }
 }
 </style>
