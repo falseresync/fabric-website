@@ -1,13 +1,14 @@
 <template>
-  <Layout>
-    <h1 class="tag-title text-center space-bottom">
-      # {{ $page.tag.title }}
-    </h1>
+  <layout>
+    <div class="separator" id="separator-1" />
 
-    <div class="posts">
-      <PostCard v-for="edge in $page.tag.belongsTo.edges" :key="edge.node.id" :post="edge.node"/>
-    </div>
-  </Layout>
+    <h1># {{ $page.tag.title }}</h1>
+
+    <section v-for="year in years" :key="year">
+      <h2>{{year}}</h2>
+      <post-card class="post-card" v-for="edge in postsByYear(year)" :key="edge.node.id" :post="edge.node"/>
+    </section>
+  </layout>
 </template>
 
 <page-query>
@@ -19,7 +20,7 @@ query Tag ($id: ID!) {
         node {
           ...on Post {
             title
-            path
+            path (to: "new_path")
             date (format: "D. MMMM YYYY")
             timeToRead
             description
@@ -33,17 +34,42 @@ query Tag ($id: ID!) {
 </page-query>
 
 <script>
-import Author from '~/components/Author.vue'
-import PostCard from '~/components/PostCard.vue'
+import PostCard from "~/components/PostCard.vue";
+
 export default {
   components: {
-    Author,
     PostCard
   },
-  metaInfo: {
-    title: 'Hello, world!'
+
+  metaInfo() {
+    return {
+      title: `# ${this.$page.tag.title}`
+    };
+  },
+
+  computed: {
+    years() {
+      const years = {};
+      const posts = this.$page.tag.belongsTo.edges;
+      posts.map(post => {
+        const year = post.node.date.split(" ")[2];
+        years[year] = "";
+      });
+      return Object.keys(years).sort((a, b) => {
+        return b - a;
+      });
+    }
+  },
+
+  methods: {
+    postsByYear(year) {
+      const posts = this.$page.tag.belongsTo.edges;
+      return posts.filter(post => {
+        return post.node.date.includes(year);
+      });
+    }
   }
-}
+};
 </script>
 
 <style lang="scss">

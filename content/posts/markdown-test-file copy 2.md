@@ -1,7 +1,7 @@
 ---
-slug: mardkown # For compatibility with old posts
-title: Markdown test file
-date: 2019-12-06
+slug: mardkown53334 # For compatibility with old posts
+title: Markdown test file3435
+date: 2020-04-06
 author: modmuss50
 published: true
 cover_image: ./images/alexandr-podvalny-220262-unsplash.jpg

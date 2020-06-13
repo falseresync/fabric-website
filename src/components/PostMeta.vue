@@ -1,21 +1,39 @@
 <template>
-   <div class="post-meta">
-      Posted {{ post.date }}.
-      <template v-if="post.timeToRead">
-        <strong>{{ post.timeToRead }} min read.</strong>
-      </template>
-    </div>
+  <small class="blogpost-meta">
+    <span class="author">{{ post.author }}</span>
+    <span class="date">{{ post.date }}</span>
+    <span v-if="post.timeToRead" class="time-to-read">{{ post.timeToRead }} min read</span>
+    <span v-if="post.tags && !disableTags" class="tags">
+      <g-link v-for="tag in post.tags" :key="tag.id" :to="tag.path">#{{tag.title}}</g-link>
+    </span>
+  </small>
 </template>
 
 <script>
 export default {
-  props: ['post']
+  props: {
+    post: Object,
+    disableTags: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-.post-meta {
-  font-size: .8em;
-  opacity: .8;
+.blogpost-meta {
+  color: var(--text-grey);
+  display: block;
+  margin: 0.5rem auto 0.5rem 0;
+
+  & > *:not(:last-child):after {
+    content: "•";
+    margin: 0 0.5rem;
+  }
+
+  & > .tags > *:not(:last-child) {
+    margin-right: 0.5rem;
+  }
 }
 </style>

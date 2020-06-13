@@ -1,44 +1,27 @@
 <template>
-  <Layout>
-    <div class="post-title">
-      <h1 class="post-title__text">
-        {{ $page.post.title }}
-      </h1>
+  <layout>
+    <g-image class="cover-image" alt="Cover image" v-if="$page.post.cover_image" :src="$page.post.cover_image" />
 
-      <PostMeta :post="$page.post" />
+    <h1>{{ $page.post.title }}</h1>
 
-    </div>
+    <post-meta :post="$page.post" />
 
-    <div class="post content-box">
-      <div class="post__header">
-        <g-image alt="Cover image" v-if="$page.post.cover_image" :src="$page.post.cover_image" />
-      </div>
+    <div class="post-content" v-html="$page.post.content" />
 
-      <div class="post__content" v-html="$page.post.content" />
-
-      <div class="post__footer">
-        <PostTags :post="$page.post" />
-      </div>
-    </div>
-
-    <div class="post-comments">
-      <!-- Add comment widgets here -->
-    </div>
-
-    <Author class="post-author" />
-  </Layout>
+    <post-meta :post="$page.post" />
+  </layout>
 </template>
 
 <script>
 import PostMeta from '~/components/PostMeta'
 import PostTags from '~/components/PostTags'
-import Author from '~/components/Author.vue'
+
 export default {
   components: {
-    Author,
     PostMeta,
     PostTags
   },
+  
   metaInfo () {
     return {
       title: this.$page.post.title,
@@ -57,8 +40,9 @@ export default {
 query Post ($id: ID!) {
   post: post (id: $id) {
     title
-    path
-    date (format: "D. MMMM YYYY")
+    author
+    path (to: "new_path")
+    date (format: "MMM D, YYYY")
     timeToRead
     tags {
       id
@@ -73,48 +57,13 @@ query Post ($id: ID!) {
 </page-query>
 
 <style lang="scss">
-.post-title {
-  padding: calc(var(--space) / 2) 0 calc(var(--space) / 2);
-  text-align: center;
+.cover-image {
+  width: 100%;
 }
-.post {
-  &__header {
-    width: calc(100% + var(--space) * 2);
-    margin-left: calc(var(--space) * -1);
-    margin-top: calc(var(--space) * -1);
-    margin-bottom: calc(var(--space) / 2);
-    overflow: hidden;
-    border-radius: var(--radius) var(--radius) 0 0;
-    img {
-      width: 100%;
-    }
-    &:empty {
-      display: none;
-    }
+
+.post-content {
+  * {
+    max-width: 100%;
   }
-  &__content {
-    h2:first-child {
-      margin-top: 0;
-    }
-    p:first-of-type {
-      font-size: 1.2em;
-      color: var(--title-color);
-    }
-    img {
-      width: calc(100% + var(--space) * 2);
-      margin-left: calc(var(--space) * -1);
-      display: block;
-      max-width: none;
-    }
-  }
-}
-.post-comments {
-  padding: calc(var(--space) / 2);
-  &:empty {
-    display: none;
-  }
-}
-.post-author {
-  margin-top: calc(var(--space) / 2);
 }
 </style>

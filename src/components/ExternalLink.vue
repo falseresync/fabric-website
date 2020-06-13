@@ -27,12 +27,13 @@ export default {
 };
 </script>
 
-<style scoped>
-a > svg {
-  height: 0.75em;
-  margin-bottom: -0.05em;
-}
+<style lang="scss" scoped>
 a {
   cursor: pointer;
+
+  & > svg {
+    height: 0.75em;
+    margin-bottom: -0.05em;
+  }
 }
 </style>

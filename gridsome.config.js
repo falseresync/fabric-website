@@ -6,8 +6,17 @@ module.exports = {
   titleTemplate: 'Fabric - %s',
 
   templates: {
-    Post: '/blog/:title',
-    Tag: '/tag/:id'
+    Post: [
+      {
+        name: 'old_path',
+        path: '/blog/:year/:month/:day/:slug'
+      },
+      {
+        name: 'new_path',
+        path: '/blog/:year/:month/:day/:title'
+      }
+    ],
+    Tag: '/blog/tag/:id'
   },
 
   plugins: [

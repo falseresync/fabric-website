@@ -263,46 +263,8 @@
       <div id="blog" class="column">
         <h1>blog</h1>
         <ul>
-          <li>
-            <h3>
-              <external-link href="blog/538397-fabric-for-minecraft-1-16">Fabric for Minecraft 1.16</external-link>
-            </h3>
-            <span>
-              Fabric for Minecraft 1.16 has been released, many changes have been
-              deployed with this release.
-            </span>
-            <small class="blogpost-meta">
-              <span class="author">modmuss50</span>
-              <span class="timestamp">Jun 12, 2020</span>
-            </small>
-          </li>
-          <li>
-            <h3>
-              <external-link href="blog/134888-may-mods-highlight">May Mods Highlight</external-link>
-            </h3>
-            <span>
-              May was intense! A whole bunch of updates, new mods and ideas have
-              been storming our community in the last month.
-            </span>
-            <small class="blogpost-meta">
-              <span class="author">blog team</span>
-              <span class="timestamp">Jun 6, 2020</span>
-            </small>
-          </li>
-          <li>
-            <h3>
-              <external-link
-                href="blog/249240-critical-changes-to-dimensions"
-              >Critical changes to dimensions</external-link>
-            </h3>
-            <span>
-              Mojang decided to heavily rewrite dimenstions. A lot of stuff is now
-              broken.
-            </span>
-            <small class="blogpost-meta">
-              <span class="author">modmuss50</span>
-              <span class="timestamp">May 22, 2020</span>
-            </small>
+          <li v-for="edge in $page.posts.edges" :key="edge.node.id">
+            <post-card class="post-card" :post="edge.node" shorten-description disable-tags />
           </li>
         </ul>
         <g-link to="/blog" class="icon-button">
@@ -324,14 +286,41 @@
   </layout>
 </template>
 
+<page-query>
+query {
+  posts: allPost(limit: 3) {
+    edges {
+      node {
+        id
+        title
+        date (format: "MMM D, YYYY")
+        author
+        timeToRead
+        description
+        cover_image (width: 770, height: 380, blur: 10)
+        path (to: "new_path")
+        tags {
+          id
+          title
+          path
+        }
+      }
+    }
+  }
+}
+</page-query>
+
 <script>
 import ExternalLink from "~/components/ExternalLink";
+import PostCard from "~/components/PostCard";
+
 export default {
   metaInfo: {
     title: "Minecraft modding toolchain"
   },
   components: {
-    ExternalLink
+    ExternalLink,
+    PostCard
   },
   data() {
     return {
@@ -380,7 +369,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 section#join-community {
   background: linear-gradient(
     110deg,
@@ -393,24 +382,32 @@ section#join-community {
   padding: 0 1rem 1rem 1rem;
   text-align: right;
 }
-section#join-community > a {
-  margin-left: 0.5rem;
+
+section#join-community {
+  a {
+    margin-left: 0.5rem;
+
+    .g-image {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
 }
-section#join-community > a .g-image {
-  height: 2.5rem;
-  width: 2.5rem;
-}
+
 #blog > ul {
   margin-bottom: 1rem;
 }
+
 .blogpost-meta {
   display: block;
   margin: 0.25rem auto 0.25rem 0;
+
+  .author:after {
+    content: "•";
+    margin: 0 0.25rem;
+  }
 }
-.blogpost-meta > .author:after {
-  content: "•";
-  margin: 0 0.25rem;
-}
+
 @media (min-width: 60rem) {
   section#join-community {
     padding-top: 0.2rem;

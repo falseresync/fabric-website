@@ -96,12 +96,12 @@ export default {
 .icon-button {
   align-items: center;
   border: 2px solid var(--brand-light);
-  border-radius: 2rem;
+  border-radius: 2em;
   cursor: pointer;
   display: inline-flex;
   font-size: 1rem;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   text-decoration: none;
 }
 
@@ -112,9 +112,11 @@ export default {
 .icon-button:hover:not([disabled]),
 .icon-button:focus:not([disabled]) {
   border-color: var(--brand-dark);
+  text-decoration: none;
 }
 .icon-button > span {
   display: block;
+  text-decoration: none;
 }
 .icon-button > svg {
   height: 1.2rem;
@@ -190,13 +192,16 @@ h1 {
 }
 h2 {
   font-size: 1.5rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 h3 {
   font-size: 1.15rem;
-  margin-top: 0.15rem;
-  margin-bottom: 0.15rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+small {
+  font-size: 0.9rem;
 }
 ul {
   list-style: disc;
