@@ -26,8 +26,8 @@ export default {
   --background: #fcfbf8;
   --background-grey: #ece8db;
   --text: #1f1a14;
-  --text-grey: #675645;
-  --text-white: #fffefa;
+  --text-grey: #796552;
+  --text-white: #fcfbf8;
   --text-black: #1f1a14;
   font-size: 18px;
 }
@@ -143,15 +143,17 @@ export default {
 * {
   outline: none;
 }
+
 a {
   color: inherit;
   cursor: pointer;
-  text-decoration: none;
 }
+
 a:hover,
 a:focus {
-  text-decoration: underline;
+  color: var(--text-grey);
 }
+
 body {
   background-color: var(--background);
   color: var(--text);
@@ -262,8 +264,8 @@ ul > li:not(:last-child) {
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #1f1a14;
-    --text: #fffefa;
-    --text-grey: #ac957e;
+    --text: #fcfbf8;
+    --text-grey: #e0c8b2;
   }
   select {
     background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9' /%3E%3C/svg%3E");

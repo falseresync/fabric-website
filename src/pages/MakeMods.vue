@@ -33,14 +33,8 @@
           <span>
             If you are into big mods, following mods and libs are a great place for studying:
             <ul>
-              <li>
-                <external-link href="https://github.com/TechReborn">TechReborn org</external-link>
-              </li>
-              <li>                
-                <external-link href="https://github.com/TerraformersMC">TerraformersMC org</external-link>
-              </li>
-              <li>
-                <external-link href="https://github.com/shedaniel/RoughlyEnoughItems">REI mod</external-link>
+              <li v-for="example in modExamplesCurrent" :key="example.link">
+                <external-link :href="example.link">{{example.name}}</external-link>
               </li>
             </ul>
           </span>
@@ -172,6 +166,57 @@ export default {
   },
   data() {
     return {
+      modExamples: [
+        {
+          link: "https://github.com/TechReborn",
+          name: "TechReborn org"
+        },
+        {
+          link: "https://github.com/TerraformersMC",
+          name: "TerraformersMC org"
+        },
+        {
+          link: "https://github.com/shedaniel/RoughlyEnoughItems",
+          name: "REI mod"
+        },
+        {
+          link: "https://github.com/TeamSuperPeople/azuma",
+          name: "Azuma mod"
+        },
+        {
+          link: "https://github.com/OnyxStudios",
+          name: "OnyxStudios org"
+        },
+        {
+          link: "https://github.com/CottonMC",
+          name: "CottonMC org"
+        },
+        {
+          link: "https://github.com/jellysquid3",
+          name: "JellySquid author"
+        },
+        {
+          link: "https://github.com/SuperCoder7979",
+          name: "SuperCoder7979 author"
+        },
+        {
+          link: "https://github.com/grondag",
+          name: "grondag author"
+        },
+        {
+          link: "https://github.com/AllOfFabric",
+          name: "All Of Fabric org"
+        },
+        {
+          link: "https://github.com/AlexIIL",
+          name: "AlexIIL author"
+        },
+        {
+          link: "https://github.com/FabLabsMC",
+          name: "FabLabs org"
+        }
+      ],
+      modExamplesCurrentIds: [0, 1, 2],
       tab: "properties",
       tabs: {
         properties: {
@@ -209,6 +254,9 @@ export default {
     };
   },
   computed: {
+    modExamplesCurrent() {
+      return this.modExamplesCurrentIds.map(id => this.modExamples[id]);
+    },
     tabContent() {
       return this.tab === "buildscript" ? this.buildscript : this.properties;
     },
@@ -241,6 +289,14 @@ export default {
     }
   },
   async mounted() {
+    this.modExamplesCurrentIds = [];
+    while (this.modExamplesCurrentIds.length < 3) {
+      let random = this.getRandomInt(0, this.modExamples.length);
+      if (!this.modExamplesCurrentIds.includes(random)) {
+        this.modExamplesCurrentIds.push(random);
+      }
+    }
+
     this.fetchLoaderVersion();
 
     await fetch("https://meta.fabricmc.net/v2/versions/game")
@@ -288,6 +344,12 @@ export default {
     }
   },
   methods: {
+    getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;
+    },
+
     fetchLoaderVersion() {
       fetch("https://meta.fabricmc.net/v2/versions/loader?limit=1")
         .then(response => response.json())

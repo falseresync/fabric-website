@@ -75,29 +75,33 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 nav {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem 0;
+
+  div {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 }
-nav > div {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
+
 img {
   content: url("~@/assets/fabric-logo-full.png");
   height: 1.5rem;
   max-height: 1.5rem;
 }
+
 button > svg {
   color: var(--text);
   height: 2.5rem;
 }
+
 ul#nav-links {
   align-items: center;
   display: none;
@@ -105,16 +109,24 @@ ul#nav-links {
   list-style: none;
   margin: 0;
   padding: 0;
+
+  &.open {
+    display: flex;
+  }
+
+  li {
+    margin: 1rem 0 0 0;
+  }
+
+  [aria-current] {
+    text-decoration: underline;
+  }
 }
-ul#nav-links.open {
-  display: flex;
+
+a {  
+  text-decoration: none;
 }
-ul#nav-links > li {
-  margin: 1rem 0 0 0;
-}
-[aria-current] {
-  text-decoration: underline;
-}
+
 @media (min-width: 60rem) {
   nav {
     flex-direction: row;
