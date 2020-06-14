@@ -10,12 +10,55 @@
         <modding-intro class="column" />
       </div>
       <div class="column">
-        Nothing's here yet!
+        <h1>want examples?</h1>
+        <div class="point">
+          <div class="icon">1</div>
+          <span>
+            Check out
+            <external-link href="https://github.com/FabricMC/fabric-example-mod">Fabric Example Mod</external-link>
+            providing you a configured bare minimum template to start modding.
+          </span>
+        </div>
+        <div class="point single-line">
+          <div class="icon">2</div>
+          <span>
+            There's
+            <external-link
+              href="https://github.com/natanfudge/fabric-example-mod-kotlin"
+            >Fabric Example Mod in Kotlin</external-link>too!
+          </span>
+        </div>
+        <div class="point">
+          <div class="icon">3</div>
+          <span>
+            If you are into big mods, following mods and libs are a great place for studying:
+            <ul>
+              <li>
+                <external-link href="https://github.com/TechReborn">TechReborn org</external-link>
+              </li>
+              <li>                
+                <external-link href="https://github.com/TerraformersMC">TerraformersMC org</external-link>
+              </li>
+              <li>
+                <external-link href="https://github.com/shedaniel/RoughlyEnoughItems">REI mod</external-link>
+              </li>
+            </ul>
+          </span>
+        </div>        
+        <div class="point">
+          <div class="icon">4</div>
+          <span>
+            Struggling with Mixins? Look at
+            <external-link href="https://github.com/SpongePowered">SpongePowered projects</external-link>
+            code for examples!
+            Though those aren't Fabric, they still contain <i>a lot of</i> applicable reference examples.
+          </span>
+        </div>
       </div>
     </section>
 
     <div id="separator-3" class="separator" />
-    
+
     <section id="dev-env-versions">
       <h1>dev env versions</h1>
 
@@ -359,20 +402,6 @@ export default {
 
 select {
   margin-bottom: 1rem;
-}
-
-code {
-  background: var(--background-grey);
-  border-left: 0.5rem solid var(--brand-light);
-  color: var(--text-black);
-  display: block;
-  font-size: 0.9rem;
-  height: min-content;
-  margin: 1rem auto;
-  max-width: 100%;
-  overflow-x: auto;
-  padding: 0.5rem 1.5rem;
-  white-space: pre;
 }
 
 @media (min-width: 60rem) {

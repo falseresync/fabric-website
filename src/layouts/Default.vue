@@ -122,6 +122,24 @@ export default {
   height: 1.2rem;
   margin-left: 1rem;
 }
+
+.inline-code {
+  background: var(--background-grey);
+  border-left: 0.5rem solid var(--brand-light);
+  color: var(--text-black);
+  font-family: monospace;
+  font-size: 0.9rem;
+  padding: 1rem;
+}
+
+.backquotes {
+  background: var(--background-grey);
+  color: var(--text-black);
+  font-family: monospace;
+  font-size: 0.9rem;
+  padding: 0.25rem;
+}
+
 * {
   outline: none;
 }
@@ -152,6 +170,21 @@ button {
   background: none;
   border: none;
 }
+
+code {
+  background: var(--background-grey);
+  border-left: 0.5rem solid var(--brand-light);
+  color: var(--text-black);
+  display: block;
+  font-size: 0.9rem;
+  height: min-content;
+  margin: 1rem auto;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.5rem 1.5rem;
+  white-space: pre;
+}
+
 section {
   margin-bottom: 1rem;
 }

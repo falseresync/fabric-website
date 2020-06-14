@@ -41,6 +41,9 @@
               <external-link
                 href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.exe"
               >Download Fabric Installer (Windows)</external-link>
+              <external-link
+                href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
+              >Download Fabric Installer (Any OS)</external-link>
             </span>
           </div>
           <div class="point single-line">
@@ -59,10 +62,120 @@
             </svg>
             <span>
               <external-link
-                href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
-              >Download Fabric Installer (Any OS)</external-link>
+                href="https://curseforge.com/minecraft/mc-mods/fabric-api"
+              >Download Fabric API</external-link>
             </span>
           </div>
+          <div class="point">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+              />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <span>
+              Windows may show a SmartScreen warning.
+              We cannot currently do anything about this.
+              You may use the .JAR or MultiMC to install.
+            </span>
+          </div>
+        </template>
+        <template v-else-if="downloadOption == 'server'">
+          <div class="point">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>
+              <external-link
+                href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
+              >Download Fabric Installer</external-link>
+              <div>Or use a direct link:</div>
+              <div
+                class="inline-code"
+              >https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar</div>
+            </span>
+          </div>
+          <div class="point single-line">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>
+              <external-link
+                href="https://curseforge.com/minecraft/mc-mods/fabric-api"
+              >Download Fabric API</external-link>
+            </span>
+          </div>
+        </template>
+        <template v-else-if="downloadOption == 'multimc'">
+          <div class="point single-line">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            <span>
+              <external-link href="https://multimc.org/#Download">Download MultiMC</external-link>
+            </span>
+          </div>
+          <div class="point single-line">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>
+              <external-link
+                href="https://curseforge.com/minecraft/mc-mods/fabric-api"
+              >Download Fabric API</external-link>
+            </span>
+          </div>
+        </template>
+        <template v-else-if="downloadOption == 'others'">
           <div class="point single-line">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +229,118 @@
               launcher's menu, which you can now use to launch Fabric.
             </span>
           </div>
+          <div class="point">
+            <div class="icon">3</div>
+            <span>
+              Put Fabric API into
+              <span class="backquotes">.minecraft/mods/</span> folder.
+            </span>
+          </div>
+        </template>
+        <template v-else-if="downloadOption == 'server'">
+          <div>
+            The Minecraft version can be selected in the installer, this download
+            works for every version we support.
+          </div>
+          <div class="point">
+            <div class="icon">1</div>
+            <span>
+              Open the Installer. Select the server tab.
+              In the window you need to configure the game and
+              loader versions and the install location.
+              <ul>
+                <li>
+                  Generally using the latest available Loader version is
+                  recommended.
+                </li>
+              </ul>
+            </span>
+          </div>
+          <div class="point">
+            <div class="icon">2</div>
+            <span>
+              Press Install. In the output directory, a
+              <span
+                class="backquotes"
+              >fabric-server-launch.jar</span> will be created.
+              It expects a
+              <span class="backquotes">server.jar</span>, which is the vanilla server JAR,
+              generally found on Mojang's version announcement blog posts.
+              <ul>
+                <li>
+                  If upgrading, remember to remove the
+                  <span class="backquotes">.fabric</span> folder if presented!
+                </li>
+              </ul>
+            </span>
+          </div>
           <div class="point single-line">
             <div class="icon">3</div>
-            <span>Put Fabric API into .minecraft/mods/ folder.</span>
+            <span>Put Fabric API into /mods/ folder.</span>
+          </div>
+        </template>
+        <template v-else-if="downloadOption == 'multimc'">
+          <div>
+            MultiMC is a great launcher we recommend
+            for the smoothest experience when using Fabric.
+          </div>
+          <div class="point">
+            <div class="icon">1</div>
+            <span>
+              Open MultiMC and create instance using
+              <span class="backquotes">Add Instance</span>.
+              Select desired Minecraft version in the prompt.
+            </span>
+          </div>
+          <div class="point">
+            <div class="icon">2</div>
+            <span>
+              Select your new instance and click
+              <span class="backquotes">Edit Instance</span>.
+              Choose
+              <span class="backquotes">Version</span>
+              and click
+              <span class="backquotes">Install Fabric</span>.
+              MultiMC will do the job automatically.
+            </span>
+          </div>
+          <div class="point">
+            <div class="icon">3</div>
+            <span>
+              Choose
+              <span class="backquotes">Loader mods</span> and drag Fabric API onto the list.
+            </span>
+          </div>
+        </template>        
+        <template v-else-if="downloadOption == 'others'">
+          <div>
+            Fabric is supported by several other launchers.
+            We have guides on our wiki for:
+            <ul>
+              <li>
+                <external-link
+                  href="https://fabricmc.net/wiki/tutorial:mcupdater_modpacks"
+                >MCUpdater</external-link>
+              </li>
+              <li>
+                <external-link
+                  href="https://fabricmc.net/wiki/tutorial:technic_modpacks"
+                >Technic</external-link>
+              </li>
+              <li>
+                <external-link
+                  href="https://fabricmc.net/wiki/tutorial:atlauncher_modpacks"
+                >ATLauncher</external-link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <br />
+            As for Twitch, there is a hacky mod named 
+            <external-link
+              href="https://www.curseforge.com/minecraft/mc-mods/jumploader"
+            >Jumploader</external-link>
+            allowing Fabric to work on Twitch, but it is <i>unofficial</i>.
           </div>
         </template>
       </div>
@@ -228,10 +450,6 @@
     <div class="separator" id="separator-2" />
 
     <section class="columns" id="make-mods--blog">
-      <div id="make-mods" class="column">       
-        <h1>make mods</h1>
-        <modding-intro />
-      </div>
       <div id="blog" class="column">
         <h1>blog</h1>
         <ul>
@@ -253,6 +471,10 @@
             <polyline points="9 18 15 12 9 6" />
           </svg>
         </g-link>
+      </div>
+      <div id="make-mods" class="column">
+        <h1>make mods</h1>
+        <modding-intro />
       </div>
     </section>
   </layout>
@@ -312,17 +534,9 @@ export default {
           name: "MultiMC"
         },
         {
-          id: "atlauncher",
-          name: "ATLauncher"
+          id: "others",
+          name: "Others (and Twitch)"
         },
-        {
-          id: "mcupdater",
-          name: "MCUpdater"
-        },
-        {
-          id: "technic",
-          name: "Technic"
-        }
       ],
       downloadOption: "vanilla"
     };
@@ -337,7 +551,11 @@ export default {
   },
   watch: {
     downloadOption(newOption, oldOption) {
-      this.$router.replace({ query: { download: newOption } });
+      if (newOption != oldOption) {
+        this.$router.replace({
+          query: { ...this.$route.query, download: newOption }
+        });
+      }
     }
   }
 };
@@ -380,6 +598,10 @@ section#join-community {
     content: "•";
     margin: 0 0.25rem;
   }
+}
+
+.iniline-code {
+  margin-top: 0.5rem;
 }
 
 @media (min-width: 60rem) {
