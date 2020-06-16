@@ -23,7 +23,7 @@
           </div>
         </div>
         <template v-if="downloadOption == 'vanilla'">
-          <div class="point single-line">
+          <div class="point">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -38,12 +38,16 @@
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
             <span>
-              <external-link
-                href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.exe"
-              >Download Fabric Installer (Windows)</external-link>
-              <external-link
-                href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
-              >Download Fabric Installer (Any OS)</external-link>
+              <div>
+                <external-link
+                  href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.exe"
+                >Download Fabric Installer (Windows)</external-link>
+              </div>
+              <div>
+                <external-link
+                  href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
+                >Download Fabric Installer (JAR/Any OS)</external-link>
+              </div>
             </span>
           </div>
           <div class="point single-line">
@@ -108,10 +112,7 @@
               <external-link
                 href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
               >Download Fabric Installer</external-link>
-              <div>Or use a direct link:</div>
-              <div
-                class="inline-code"
-              >https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar</div>
+              <div>This link is direct, you can copy it</div>
             </span>
           </div>
           <div class="point single-line">
@@ -276,7 +277,7 @@
           </div>
           <div class="point single-line">
             <div class="icon">3</div>
-            <span>Put Fabric API into /mods/ folder.</span>
+            <span>Put Fabric API into <span class="backquotes">/mods/</span> folder.</span>
           </div>
         </template>
         <template v-else-if="downloadOption == 'multimc'">
@@ -542,10 +543,7 @@ export default {
     };
   },
   mounted() {
-    let downloadOption = this.$route.query.download;
-    if (downloadOption != undefined) {
-      this.downloadOption = downloadOption;
-    }
+    this.setDownloadFromQuery(this.$route.query.download);
 
     this.$refs.launcherDownloadChooser.removeAttribute("disabled");
   },
@@ -555,6 +553,20 @@ export default {
         this.$router.replace({
           query: { ...this.$route.query, download: newOption }
         });
+      }
+    },
+    '$route.query.download'(newOption, oldOption) {
+      if (newOption != oldOption) {
+        this.setDownloadFromQuery(newOption);
+      }
+    }
+  },
+  methods: {
+    setDownloadFromQuery(download) {
+      if (download == undefined || this.downloadOptions.filter(it => it.id == download).length < 1) {
+        this.downloadOption = "vanilla";
+      } else {
+        this.downloadOption = download;
       }
     }
   }

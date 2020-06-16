@@ -197,7 +197,7 @@ export default {
         },
         {
           link: "https://github.com/SuperCoder7979",
-          name: "SuperCoder7979 author"
+          name: "SuperCoder79 author"
         },
         {
           link: "https://github.com/grondag",

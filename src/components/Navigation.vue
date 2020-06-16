@@ -117,10 +117,6 @@ ul#nav-links {
   li {
     margin: 1rem 0 0 0;
   }
-
-  [aria-current] {
-    text-decoration: underline;
-  }
 }
 
 a {  
