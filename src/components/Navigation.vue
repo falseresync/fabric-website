@@ -119,8 +119,12 @@ ul#nav-links {
   }
 }
 
-a {  
+a {
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 @media (min-width: 60rem) {

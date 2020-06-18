@@ -10,10 +10,12 @@
           for most mods to run. Choose the launcher you would like to use below and
           follow the instructions nearby.
         </div>
+  
+        <please-wait-data-point v-if="pleaseWaitDataPoint" />
         <div class="point">
           <div>
             <noscript>This feature requires JavaScript</noscript>
-            <select v-model="downloadOption" disabled ref="launcherDownloadChooser">
+            <select v-model="downloadOption" :disabled="installerUrlJar === null">
               <option
                 v-for="option in downloadOptions"
                 :key="option.id"
@@ -22,328 +24,26 @@
             </select>
           </div>
         </div>
-        <template v-if="downloadOption == 'vanilla'">
-          <div class="point">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span>
-              <div>
-                <external-link
-                  href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.exe"
-                >Download Fabric Installer (Windows)</external-link>
-              </div>
-              <div>
-                <external-link
-                  href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
-                >Download Fabric Installer (JAR/Any OS)</external-link>
-              </div>
-            </span>
-          </div>
-          <div class="point single-line">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span>
-              <external-link
-                href="https://curseforge.com/minecraft/mc-mods/fabric-api"
-              >Download Fabric API</external-link>
-            </span>
-          </div>
-          <div class="point">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
-              />
-              <line x1="12" y1="9" x2="12" y2="13" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
-            <span>
-              Windows may show a SmartScreen warning.
-              We cannot currently do anything about this.
-              You may use the .JAR or MultiMC to install.
-            </span>
-          </div>
-        </template>
-        <template v-else-if="downloadOption == 'server'">
-          <div class="point">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span>
-              <external-link
-                href="https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.40/fabric-installer-0.5.2.40.jar"
-              >Download Fabric Installer</external-link>
-              <div>This link is direct, you can copy it</div>
-            </span>
-          </div>
-          <div class="point single-line">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span>
-              <external-link
-                href="https://curseforge.com/minecraft/mc-mods/fabric-api"
-              >Download Fabric API</external-link>
-            </span>
-          </div>
-        </template>
-        <template v-else-if="downloadOption == 'multimc'">
-          <div class="point single-line">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-            <span>
-              <external-link href="https://multimc.org/#Download">Download MultiMC</external-link>
-            </span>
-          </div>
-          <div class="point single-line">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span>
-              <external-link
-                href="https://curseforge.com/minecraft/mc-mods/fabric-api"
-              >Download Fabric API</external-link>
-            </span>
-          </div>
-        </template>
-        <template v-else-if="downloadOption == 'others'">
-          <div class="point single-line">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span>
-              <external-link
-                href="https://curseforge.com/minecraft/mc-mods/fabric-api"
-              >Download Fabric API</external-link>
-            </span>
-          </div>
-        </template>
+
+        <download-vanilla 
+          :jar="installerUrlJar"
+          :exe="installerUrlExe" 
+          v-if="downloadOption == 'vanilla'"
+          />
+        <download-server
+          :jar="installerUrlJar"
+          v-else-if="downloadOption == 'server'"
+          />
+        <download-multimc v-else-if="downloadOption == 'multimc'" />
+        <download-others v-else-if="downloadOption == 'others'" />
       </div>
       <div class="column">
         <h1>install</h1>
-        <template v-if="downloadOption == 'vanilla'">
-          <div>
-            The Minecraft version can be selected in the installer, this download
-            works for every version we support.
-          </div>
-          <div class="point">
-            <div class="icon">1</div>
-            <span>
-              Open the Installer. In the window you need to configure the game and
-              loader versions and the install location.
-              <ul>
-                <li>
-                  Generally using the latest available Loader version is
-                  recommended.
-                </li>
-                <li>
-                  The default installation location should be fine on most
-                  platforms.
-                </li>
-              </ul>
-            </span>
-          </div>
-          <div class="point">
-            <div class="icon">2</div>
-            <span>
-              Press Install. A new game version and profile will be created in the
-              launcher's menu, which you can now use to launch Fabric.
-            </span>
-          </div>
-          <div class="point">
-            <div class="icon">3</div>
-            <span>
-              Put Fabric API into
-              <span class="backquotes">.minecraft/mods/</span> folder.
-            </span>
-          </div>
-        </template>
-        <template v-else-if="downloadOption == 'server'">
-          <div>
-            The Minecraft version can be selected in the installer, this download
-            works for every version we support.
-          </div>
-          <div class="point">
-            <div class="icon">1</div>
-            <span>
-              Open the Installer. Select the server tab.
-              In the window you need to configure the game and
-              loader versions and the install location.
-              <ul>
-                <li>
-                  Generally using the latest available Loader version is
-                  recommended.
-                </li>
-              </ul>
-            </span>
-          </div>
-          <div class="point">
-            <div class="icon">2</div>
-            <span>
-              Press Install. In the output directory, a
-              <span
-                class="backquotes"
-              >fabric-server-launch.jar</span> will be created.
-              It expects a
-              <span class="backquotes">server.jar</span>, which is the vanilla server JAR,
-              generally found on Mojang's version announcement blog posts.
-              <ul>
-                <li>
-                  If upgrading, remember to remove the
-                  <span class="backquotes">.fabric</span> folder if presented!
-                </li>
-              </ul>
-            </span>
-          </div>
-          <div class="point single-line">
-            <div class="icon">3</div>
-            <span>Put Fabric API into <span class="backquotes">/mods/</span> folder.</span>
-          </div>
-        </template>
-        <template v-else-if="downloadOption == 'multimc'">
-          <div>
-            MultiMC is a great launcher we recommend
-            for the smoothest experience when using Fabric.
-          </div>
-          <div class="point">
-            <div class="icon">1</div>
-            <span>
-              Open MultiMC and create instance using
-              <span class="backquotes">Add Instance</span>.
-              Select desired Minecraft version in the prompt.
-            </span>
-          </div>
-          <div class="point">
-            <div class="icon">2</div>
-            <span>
-              Select your new instance and click
-              <span class="backquotes">Edit Instance</span>.
-              Choose
-              <span class="backquotes">Version</span>
-              and click
-              <span class="backquotes">Install Fabric</span>.
-              MultiMC will do the job automatically.
-            </span>
-          </div>
-          <div class="point">
-            <div class="icon">3</div>
-            <span>
-              Choose
-              <span class="backquotes">Loader mods</span> and drag Fabric API onto the list.
-            </span>
-          </div>
-        </template>        
-        <template v-else-if="downloadOption == 'others'">
-          <div>
-            Fabric is supported by several other launchers.
-            We have guides on our wiki for:
-            <ul>
-              <li>
-                <external-link
-                  href="https://fabricmc.net/wiki/tutorial:mcupdater_modpacks"
-                >MCUpdater</external-link>
-              </li>
-              <li>
-                <external-link
-                  href="https://fabricmc.net/wiki/tutorial:technic_modpacks"
-                >Technic</external-link>
-              </li>
-              <li>
-                <external-link
-                  href="https://fabricmc.net/wiki/tutorial:atlauncher_modpacks"
-                >ATLauncher</external-link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <br />
-            As for Twitch, there is a hacky mod named 
-            <external-link
-              href="https://www.curseforge.com/minecraft/mc-mods/jumploader"
-            >Jumploader</external-link>
-            allowing Fabric to work on Twitch, but it is <i>unofficial</i>.
-          </div>
-        </template>
+
+        <install-vanilla v-if="downloadOption == 'vanilla'" />
+        <install-server v-else-if="downloadOption == 'server'" />
+        <install-multimc v-else-if="downloadOption == 'multimc'" />
+        <install-others v-else-if="downloadOption == 'others'" />
       </div>
     </section>
 
@@ -506,7 +206,20 @@ query {
 </page-query>
 
 <script>
+import DownloadVanilla from "~/components/subpages/index/DownloadVanilla";
+import InstallVanilla from "~/components/subpages/index/InstallVanilla";
+
+import DownloadServer from "~/components/subpages/index/DownloadServer";
+import InstallServer from "~/components/subpages/index/InstallServer";
+
+import DownloadMultiMC from "~/components/subpages/index/DownloadMultiMC";
+import InstallMultiMC from "~/components/subpages/index/InstallMultiMC";
+
+import DownloadOthers from "~/components/subpages/index/DownloadOthers";
+import InstallOthers from "~/components/subpages/index/InstallOthers";
+
 import ModdingIntro from "~/components/subpages/ModdingIntro";
+import PleaseWaitDataPoint from "~/components/PleaseWaitDataPoint";
 import ExternalLink from "~/components/ExternalLink";
 import PostCard from "~/components/PostCard";
 
@@ -515,7 +228,21 @@ export default {
     title: "Minecraft modding toolchain"
   },
   components: {
+    DownloadVanilla,
+    InstallVanilla,
+
+    DownloadServer,
+    InstallServer,
+
+    // Because it splits by text case
+    DownloadMultimc: DownloadMultiMC,
+    InstallMultimc: InstallMultiMC,
+
+    DownloadOthers,
+    InstallOthers,
+
     ModdingIntro,
+    PleaseWaitDataPoint,
     ExternalLink,
     PostCard
   },
@@ -539,13 +266,32 @@ export default {
           name: "Others (and Twitch)"
         },
       ],
-      downloadOption: "vanilla"
+      downloadOption: "vanilla",
+      pleaseWaitDataPointTimer: null,
+      pleaseWaitDataPoint: false,
+      installerUrlJar: null,
+      installerUrlExe: null
     };
   },
   mounted() {
     this.setDownloadFromQuery(this.$route.query.download);
 
-    this.$refs.launcherDownloadChooser.removeAttribute("disabled");
+    this.pleaseWaitDataPointTimer = setTimeout(this.checkPleaseWaitDataPointValidity, 1000);
+
+    fetch("https://meta.fabricmc.net/v2/versions/installer")
+      .then(response => response.json())
+      .then(data => {
+        this.installerUrlJar = data[0].url;
+        this.installerUrlExe = this.installerUrlJar.replace(".jar", ".exe");
+        this.pleaseWaitDataPoint = false;
+      })
+      .catch(error => {
+        console.log(error);
+        this.pleaseWaitDataPoint = true;
+      })
+      .finally(() => {        
+        clearTimeout(this.pleaseWaitDataPointTimer);
+      });
   },
   watch: {
     downloadOption(newOption, oldOption) {
@@ -567,6 +313,15 @@ export default {
         this.downloadOption = "vanilla";
       } else {
         this.downloadOption = download;
+      }
+    },
+    checkPleaseWaitDataPointValidity() {
+      if (this.installerUrlJar === null) {
+        this.pleaseWaitDataPoint = true;
+        this.pleaseWaitDataPointTimer = setTimeout(this.checkPleaseWaitDataPointValidity, 500);
+      } else {
+        this.pleaseWaitDataPoint = false;
+        clearTimeout(this.pleaseWaitDataPointTimer);
       }
     }
   }

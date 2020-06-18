@@ -263,7 +263,7 @@ ul > li:not(:last-child) {
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1f1a14;
+    --background: #181614;
     --text: #fcfbf8;
     --text-grey: #e0c8b2;
   }
