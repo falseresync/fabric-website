@@ -16,7 +16,7 @@
         <div class="point">
           <div>
             <noscript>This feature requires JavaScript</noscript>
-            <select v-model="downloadOption" :disabled="installerUrlJar === null">
+            <select v-model="downloadOption" :disabled="selectorDisabled">
               <option
                 v-for="option in downloadOptions"
                 :key="option.id"
@@ -251,6 +251,7 @@ export default {
   },
   data() {
     return {
+      selectorDisabledNoscript: true,
       downloadOptions: [
         {
           id: "vanilla",
@@ -276,7 +277,14 @@ export default {
       installerUrlExe: null
     };
   },
+  computed: {
+    selectorDisabled() {
+      return this.selectorDisabledNoscript || this.installerUrlJar === null;
+    }
+  },
   mounted() {
+    this.selectorDisabledNoscript = false;
+
     this.setDownloadFromQuery(this.$route.query.download);
 
     this.pleaseWaitDataPointTimer = setTimeout(this.checkPleaseWaitDataPointValidity, 1000);

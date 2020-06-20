@@ -32,6 +32,7 @@
           <div class="icon">3</div>
           <span>
             If you are into big mods, following mods and libs are a great place for studying:
+            <noscript>(This list is better with JavaScript enabled)</noscript>
             <ul>
               <li v-for="example in modExamplesCurrent" :key="example.link">
                 <external-link :href="example.link">{{example.name}}</external-link>
@@ -103,11 +104,13 @@
       
       <please-wait-data-point v-if="pleaseWaitDataPoint" />
 
-      <select v-model="devEnv.minecraftVersion">
+      <noscript v-html="`<div>This feature requires JavaScript</div>`" />
+
+      <select v-model="devEnv.minecraftVersion" :disabled="selectorDisabledNoscript">
         <option v-for="(item, i) in devEnv.minecraftVersions" :key="i" :value="item">{{item}}</option>
       </select>
 
-      <select v-model="tab">
+      <select v-model="tab" :disabled="selectorDisabledNoscript">
         <option v-for="(item, id) in tabs" :key="id" :value="id">{{item.name}}</option>
       </select>
 
@@ -171,6 +174,7 @@ export default {
   },
   data() {
     return {
+      selectorDisabledNoscript: true,
       modExamples: [
         {
           link: "https://github.com/TechReborn",
@@ -296,6 +300,8 @@ export default {
     }
   },
   async mounted() {
+    this.selectorDisabledNoscript = false;
+
     this.modExamplesCurrentIds = [];
     while (this.modExamplesCurrentIds.length < 3) {
       let random = this.getRandomInt(0, this.modExamples.length);
