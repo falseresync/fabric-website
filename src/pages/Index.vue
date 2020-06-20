@@ -12,6 +12,7 @@
         </div>
   
         <please-wait-data-point v-if="pleaseWaitDataPoint" />
+
         <div class="point">
           <div>
             <noscript>This feature requires JavaScript</noscript>
@@ -26,12 +27,12 @@
         </div>
 
         <download-vanilla 
-          :jar="installerUrlJar"
-          :exe="installerUrlExe" 
+          :jar="installerUrlJar || ''"
+          :exe="installerUrlExe || ''" 
           v-if="downloadOption == 'vanilla'"
           />
         <download-server
-          :jar="installerUrlJar"
+          :jar="installerUrlJar || ''"
           v-else-if="downloadOption == 'server'"
           />
         <download-multimc v-else-if="downloadOption == 'multimc'" />
@@ -41,7 +42,7 @@
         <h1>install</h1>
 
         <install-vanilla v-if="downloadOption == 'vanilla'" />
-        <install-server v-else-if="downloadOption == 'server'" />
+        <install-server :jar="installerUrlJar || ''" v-else-if="downloadOption == 'server'" />
         <install-multimc v-else-if="downloadOption == 'multimc'" />
         <install-others v-else-if="downloadOption == 'others'" />
       </div>

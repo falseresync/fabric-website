@@ -123,21 +123,12 @@ export default {
   margin-left: 1rem;
 }
 
-.inline-code {
-  background: var(--background-grey);
-  border-left: 0.5rem solid var(--brand-light);
-  color: var(--text-black);
-  font-family: monospace;
-  font-size: 0.9rem;
-  padding: 1rem;
-}
-
 .backquotes {
   background: var(--background-grey);
   color: var(--text-black);
   font-family: monospace;
   font-size: 0.9rem;
-  padding: 0.25rem;
+  padding: 0.2rem;
 }
 
 * {
@@ -173,7 +164,7 @@ button {
   border: none;
 }
 
-code {
+.code {
   background: var(--background-grey);
   border-left: 0.5rem solid var(--brand-light);
   color: var(--text-black);

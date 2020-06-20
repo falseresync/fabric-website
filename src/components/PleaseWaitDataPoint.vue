@@ -19,7 +19,29 @@
       <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
     </svg>
     <span>
-      Please wait, data is being fetched...
+      Please wait, data is being fetched
     </span>
   </div>
 </template>
+
+<style lang="scss" scoped>
+span::after {
+  content: "";
+  animation: runningEllipsis 1s infinite;
+}
+
+@keyframes runningEllipsis {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
+</style>

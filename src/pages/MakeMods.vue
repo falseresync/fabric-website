@@ -100,6 +100,8 @@
           <external-link href="https://discord.gg/v6v4pMv">in our Discord.</external-link>
         </span>
       </div>
+      
+      <please-wait-data-point v-if="pleaseWaitDataPoint" />
 
       <select v-model="devEnv.minecraftVersion">
         <option v-for="(item, i) in devEnv.minecraftVersions" :key="i" :value="item">{{item}}</option>
@@ -109,7 +111,7 @@
         <option v-for="(item, id) in tabs" :key="id" :value="id">{{item.name}}</option>
       </select>
 
-      <code v-highlight="{ content: tabContent, syntax: tabs[tab].syntax }">{{tabContent}}</code>
+      <code class="code" v-highlight="{ content: tabContent, syntax: tabs[tab].syntax }">{{tabContent}}</code>
     </section>
 
     <div class="separator" id="separator-2" />
@@ -138,6 +140,7 @@
       </div>
 
       <code
+        class="code"
         v-highlight="{ content: migrateMappingsCommand, syntax: 'bash' }"
       >{{migrateMappingsCommand}}</code>
     </section>
@@ -146,6 +149,7 @@
 
 <script>
 import ModdingIntro from "~/components/subpages/ModdingIntro";
+import PleaseWaitDataPoint from "~/components/PleaseWaitDataPoint";
 import ExternalLink from "~/components/ExternalLink";
 import stripIndent from "strip-indent";
 import hljs from "highlight.js/lib/core";
@@ -159,6 +163,7 @@ hljs.registerLanguage("bash", bash);
 export default {
   components: {
     ModdingIntro,
+    PleaseWaitDataPoint,
     ExternalLink
   },
   metaInfo: {
@@ -228,14 +233,16 @@ export default {
           syntax: "gradle"
         }
       },
+      pleaseWaitDataPointTimer: null,
+      pleaseWaitDataPoint: true,
       devEnv: {
         recommendedLoomVersion: "0.4-SNAPSHOT",
         minecraftVersions: [],
-        minecraftVersion: "[minecraftVersion]",
-        yarnVersion: "[yarnVersion]",
-        loaderVersion: "[loaderVersion]",
-        fabricMavenCoordinates: "[fabricMavenCoordinates]",
-        fabricVersion: "[fabricVersion]",
+        minecraftVersion: null,
+        yarnVersion: null,
+        loaderVersion: null,
+        fabricMavenCoordinates: null,
+        fabricVersion: null,
         fabricBranches: {
           mc1_16: {
             breakpoint: null,
@@ -297,6 +304,8 @@ export default {
       }
     }
 
+    this.setupPleaseWaitDataPointTimer();
+
     this.fetchLoaderVersion();
 
     await fetch("https://meta.fabricmc.net/v2/versions/game")
@@ -316,6 +325,8 @@ export default {
       if (oldVersion !== "[minecraftVersion]") {
         this.updateQueryMinecraftVersion(newVersion);
       }
+
+      this.setupPleaseWaitDataPointTimer();
 
       this.fetchYarnVersion(newVersion);
 
@@ -350,6 +361,24 @@ export default {
       return Math.floor(Math.random() * (max - min)) + min;
     },
 
+    setupPleaseWaitDataPointTimer() {
+      this.pleaseWaitDataPoint = true;
+      this.pleaseWaitDataPointTimer = setTimeout(this.checkPleaseWaitDataPointValidity, 500);
+    },
+
+    checkPleaseWaitDataPointValidity() {
+      if (this.devEnv.fabricVersion === null
+          || this.devEnv.yarnVersion === null
+          || this.devEnv.loaderVersion === null
+          || this.devEnv.minecraftVersion === null) {
+        this.pleaseWaitDataPoint = true;
+        this.pleaseWaitDataPointTimer = setTimeout(this.checkPleaseWaitDataPointValidity, 500);
+      } else {
+        this.pleaseWaitDataPoint = false;
+        clearTimeout(this.pleaseWaitDataPointTimer);
+      }
+    },
+
     fetchLoaderVersion() {
       fetch("https://meta.fabricmc.net/v2/versions/loader?limit=1")
         .then(response => response.json())
@@ -357,7 +386,7 @@ export default {
     },
 
     selectMinecraftVersion() {
-      let version = this.$route.query.version;
+      let version = this.$route.query.minecraftVersion;
       if (version !== undefined) {
         this.devEnv.minecraftVersion = version;
       } else {
