@@ -35,7 +35,7 @@
         <div>
           <b>OR</b> Download with curl: 
         </div>
-        <code class="backquotes">{{curl}}</code>
+        <code>{{curl}}</code>
       </span>
     </div>
     <div class="point">
@@ -55,7 +55,7 @@
         <div>
           <b>OR</b> Download with wget:
         </div>
-        <code class="backquotes">{{wget}}</code>
+        <code>{{wget}}</code>
       </span>
     </div>
     <div class="point single-line">

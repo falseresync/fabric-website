@@ -49,13 +49,15 @@
     </section>
 
     <section id="join-community">
-      <h1>join our community</h1>
-      <a href="https://discord.gg/v6v4pMv">
-        <g-image alt="Discord Logo" src="~/assets/discord-logo.png" />
-      </a>
-      <a href="https://github.com/FabricMC">
-        <g-image alt="GitHub Logo" src="~/assets/github-logo.png" />
-      </a>
+      <div class="wrapper">
+        <h1>join our community</h1>
+        <a href="https://discord.gg/v6v4pMv">
+          <g-image alt="Discord Logo" src="~/assets/discord-logo.png" />
+        </a>
+        <a href="https://github.com/FabricMC">
+          <g-image alt="GitHub Logo" src="~/assets/github-logo.png" />
+        </a>
+      </div>
     </section>
 
     <section id="goals-and-ideas">
@@ -337,19 +339,27 @@ section#join-community {
     var(--brand-light) 15% 45%,
     var(--brand-dark) 45% 100%
   );
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 3vw));
-  color: var(--text-white);
-  padding: 0 1rem 1rem 1rem;
-  text-align: right;
-}
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3vw), 50% 100%, 0 calc(100% - 3vw));
+  padding: 0.15rem;
 
-section#join-community {
-  a {
-    margin-left: 0.5rem;
+  .wrapper {
+    background: var(--background);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3vw), 50% 100%, 0 calc(100% - 3vw));
+    margin: 0.15rem;
+    text-align: center;
+    padding: 0.5rem;
 
-    .g-image {
-      height: 2.5rem;
-      width: 2.5rem;
+    h1 {
+      margin-top: 0;
+    }
+
+    a {
+      margin-left: 0.5rem;
+
+      .g-image {
+        height: 2rem;
+        width: 2rem;
+      }
     }
   }
 }

@@ -8,7 +8,7 @@
       <div class="icon">1</div>
       <span>
         Open MultiMC and create instance using
-        <span class="backquotes">Add Instance</span>.
+        <code>Add Instance</code>.
         Select desired Minecraft version in the prompt.
       </span>
     </div>
@@ -16,11 +16,11 @@
       <div class="icon">2</div>
       <span>
         Select your new instance and click
-        <span class="backquotes">Edit Instance</span>.
+        <code>Edit Instance</code>.
         Choose
-        <span class="backquotes">Version</span>
+        <code>Version</code>
         and click
-        <span class="backquotes">Install Fabric</span>.
+        <code>Install Fabric</code>.
         MultiMC will do the job automatically.
       </span>
     </div>
@@ -28,7 +28,7 @@
       <div class="icon">3</div>
       <span>
         Choose
-        <span class="backquotes">Loader mods</span> and drag Fabric API onto the list.
+        <code>Loader mods</code> and drag Fabric API onto the list.
       </span>
     </div>
   </div>

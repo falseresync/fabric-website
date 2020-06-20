@@ -24,7 +24,7 @@ export default {
   --brand-light: #97907e;
   --brand-dark: #7a715d;
   --background: #fcfbf8;
-  --background-grey: #ece8db;
+  --background-grey: #f3f1e8;
   --text: #1f1a14;
   --text-grey: #796552;
   --text-white: #fcfbf8;
@@ -36,7 +36,7 @@ export default {
   max-width: 50rem;
 }
 .separator {
-  height: 0.5rem;
+  height: 0.3rem;
 }
 .separator#separator-1 {
   background: linear-gradient(
@@ -123,12 +123,25 @@ export default {
   margin-left: 1rem;
 }
 
-.backquotes {
+code {
   background: var(--background-grey);
-  color: var(--text-black);
   font-family: monospace;
   font-size: 0.9rem;
   padding: 0.2rem;
+}
+
+pre > code,
+.code-block {
+  background: var(--background-grey);
+  border-left: 0.3rem solid var(--brand-light);
+  display: block;
+  font-size: 0.9rem;
+  height: min-content;
+  margin: 1rem auto;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.5rem 1.5rem;
+  white-space: pre;
 }
 
 * {
@@ -162,20 +175,6 @@ body::-webkit-scrollbar-thumb {
 button {
   background: none;
   border: none;
-}
-
-.code {
-  background: var(--background-grey);
-  border-left: 0.5rem solid var(--brand-light);
-  color: var(--text-black);
-  display: block;
-  font-size: 0.9rem;
-  height: min-content;
-  margin: 1rem auto;
-  max-width: 100%;
-  overflow-x: auto;
-  padding: 0.5rem 1.5rem;
-  white-space: pre;
 }
 
 section {
@@ -238,7 +237,7 @@ ul > li:not(:last-child) {
   margin-bottom: 0.75rem;
 }
 ::marker {
-  color: var(--brand-light);
+  color: var(--brand-dark);
   font-size: 1.25rem;
 }
 @media (min-width: 60rem) {
@@ -255,11 +254,15 @@ ul > li:not(:last-child) {
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #181614;
+    --background-grey: #332e2a;
     --text: #fcfbf8;
     --text-grey: #e0c8b2;
   }
   select {
     background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9' /%3E%3C/svg%3E");
+  }
+  ::marker {
+    color: var(--brand-light);
   }
 }
 </style>

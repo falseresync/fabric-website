@@ -53,7 +53,7 @@
 
     <div id="separator-3" class="separator" />
 
-    <section id="dev-env-versions">
+    <section v-autoscroll="$route.query.minecraftVersion !== undefined" id="dev-env-versions">
       <h1>dev env versions</h1>
 
       <div class="point single-line">
@@ -111,7 +111,7 @@
         <option v-for="(item, id) in tabs" :key="id" :value="id">{{item.name}}</option>
       </select>
 
-      <code class="code" v-highlight="{ content: tabContent, syntax: tabs[tab].syntax }">{{tabContent}}</code>
+      <code class="code-block" v-highlight="{ content: tabContent, syntax: tabs[tab].syntax }">{{tabContent}}</code>
     </section>
 
     <div class="separator" id="separator-2" />
@@ -140,7 +140,7 @@
       </div>
 
       <code
-        class="code"
+        class="code-block"
         v-highlight="{ content: migrateMappingsCommand, syntax: 'bash' }"
       >{{migrateMappingsCommand}}</code>
     </section>
@@ -322,7 +322,7 @@ export default {
   },
   watch: {
     async watchableMinecraftVersion(newVersion, oldVersion) {
-      if (oldVersion !== "[minecraftVersion]") {
+      if (oldVersion !== null) {
         this.updateQueryMinecraftVersion(newVersion);
       }
 
@@ -482,6 +482,13 @@ export default {
           binding.value.content,
           true
         ).value;
+      }
+    },    
+    autoscroll: {
+      update(el, binding) {
+        if (binding.value) {
+          el.scrollIntoView();
+        }
       }
     }
   }

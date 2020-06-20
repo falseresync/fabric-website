@@ -22,23 +22,21 @@
       <div class="icon">2</div>
       <span>
         Press Install. In the output directory, a
-        <span
-          class="backquotes"
-        >fabric-server-launch.jar</span> will be created.
+        <code>fabric-server-launch.jar</code> will be created.
         It expects a
-        <span class="backquotes">server.jar</span>, which is the vanilla server JAR,
+        <code>server.jar</code>, which is the vanilla server JAR,
         generally found on Mojang's version announcement blog posts.
         <ul>
           <li>
             If upgrading, remember to remove the
-            <span class="backquotes">.fabric</span> folder if presented!
+            <code>.fabric</code> folder if presented!
           </li>
         </ul>
       </span>
     </div>
     <div class="point single-line">
       <div class="icon">3</div>
-      <span>Put Fabric API into <span class="backquotes">/mods/</span> folder.</span>
+      <span>Put Fabric API into <code>/mods/</code> folder.</span>
     </div>
     <div class="point">
       <svg
@@ -57,7 +55,7 @@
         <div>
           Basic CLI usage:
         </div>
-        <code class="backquotes">{{cli}}</code>        
+        <code>{{cli}}</code>        
         <ul>
           <li>
             Read wiki for more advanced 

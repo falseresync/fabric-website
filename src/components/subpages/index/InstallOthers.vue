@@ -23,7 +23,7 @@
     </div>
     <div>
       <br />
-      As for Twitch, there is a hacky mod named 
+      As for Twitch, there is an <i>unofficial</i> mod named 
       <external-link
         href="https://www.curseforge.com/minecraft/mc-mods/jumploader"
       >Jumploader</external-link>

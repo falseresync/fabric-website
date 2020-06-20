@@ -70,5 +70,89 @@ query Post ($id: ID!) {
   a {
     text-decoration: underline;
   }
+
+  blockquote {
+    border-left: 0.3rem solid var(--brand-light);
+    margin: 1rem 0;
+    padding: 1rem 0 1rem 1.5rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // Default PrismJS theme
+  code {
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+      color: slategray;
+    }
+
+    .token.punctuation {
+      color: #999;
+    }
+
+    .namespace {
+      opacity: .7;
+    }
+
+    .token.property,
+    .token.tag,
+    .token.boolean,
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .token.deleted {
+      color: #c71b7b;
+    }
+
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin,
+    .token.inserted {
+      color: #690;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+      color: #8d5e25;
+    }
+
+    .token.atrule,
+    .token.attr-value,
+    .token.keyword {
+      color: #20a7e0;
+    }
+
+    .token.function,
+    .token.class-name {
+      color: #DD4A68;
+    }
+
+    .token.regex,
+    .token.important,
+    .token.variable {
+      color: #e90;
+    }
+
+    .token.important,
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+
+    .token.entity {
+      cursor: help;
+    }
+  }
 }
 </style>

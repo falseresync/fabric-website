@@ -32,7 +32,7 @@
       <div class="icon">3</div>
       <span>
         Put Fabric API into
-        <span class="backquotes">.minecraft/mods/</span> folder.
+        <code>.minecraft/mods/</code> folder.
       </span>
     </div>
   </div>
