@@ -4,12 +4,12 @@
         <title>falseresync blog</title>
         <link>https://fabricmc.net/</link>
         <description>Stuff I want to put out there in the Eenternet</description>
-        <lastBuildDate>Sat, 20 Jun 2020 17:31:32 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 20 Jun 2020 17:53:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Gridsome Feed Plugin</generator>
         <atom:link href="https://fabricmc.net/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[Markdown test file3435]]></title>
+            <title><![CDATA[Markdown test file34]]></title>
             <link>https://fabricmc.net/undefined</link>
             <guid>https://fabricmc.net/undefined</guid>
             <pubDate>Mon, 06 Apr 2020 00:00:00 GMT</pubDate>
@@ -300,7 +300,7 @@ normal paragraph. For example:
 Use the `printf()` function.]]></content:encoded>
         </item>
         <item>
-            <title><![CDATA[Markdown test file34]]></title>
+            <title><![CDATA[Markdown test file3435]]></title>
             <link>https://fabricmc.net/undefined</link>
             <guid>https://fabricmc.net/undefined</guid>
             <pubDate>Mon, 06 Apr 2020 00:00:00 GMT</pubDate>
