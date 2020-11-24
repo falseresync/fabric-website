@@ -13,7 +13,7 @@
     "@gridsome/transformer-remark": "^0.6.0",
     "gridsome": "^0.7.17",
     "gridsome-plugin-feed": "^1.0.2",
-    "highlight.js": "^10.0.3",
+    "highlight.js": "^10.1.2",
     "strip-indent": "^3.0.0",
     "vue-click-outside": "^1.1.0"
   },
