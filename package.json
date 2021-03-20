@@ -10,16 +10,16 @@
     "@gridsome/plugin-sitemap": "^0.3.0",
     "@gridsome/remark-prismjs": "^0.3.0",
     "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-remark": "^0.6.0",
-    "gridsome": "^0.7.17",
+    "@gridsome/transformer-remark": "^0.6.4",
+    "gridsome": "^0.7.23",
     "gridsome-plugin-feed": "^1.0.2",
-    "highlight.js": "^10.0.3",
+    "highlight.js": "^10.6.0",
     "strip-indent": "^3.0.0",
     "vue-click-outside": "^1.1.0"
   },
   "devDependencies": {
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "webpack-bundle-analyzer": "^3.8.0"
+    "webpack-bundle-analyzer": "^3.9.0"
   }
 }

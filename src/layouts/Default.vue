@@ -121,6 +121,12 @@ export default {
 .icon-button > svg {
   height: 1.2rem;
   margin-left: 1rem;
+  width: 1.2rem;
+}
+.icon-button > .g-image {
+  height: 1.5rem;
+  margin-left: 1rem;
+  width: 1.5rem;
 }
 
 code {

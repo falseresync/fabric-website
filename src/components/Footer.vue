@@ -11,12 +11,12 @@
             <external-link href="https://github.com/FabricMC">GitHub</external-link>
           </li>
           <li>
-            <external-link href="https://reddit.com/r/FabricMC">Reddit (Unofficial!)</external-link>
+            <external-link href="https://reddit.com/r/FabricMC">Unofficial Reddit</external-link>
           </li>
           <li>#fabric at irc.esper.net</li>
         </ul>
       </div>
-    
+
       <div id="site-links">
         <h3>robot info</h3>
         <ul>

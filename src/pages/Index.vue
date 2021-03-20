@@ -10,7 +10,7 @@
           for most mods to run. Choose the launcher you would like to use below and
           follow the instructions nearby.
         </div>
-  
+
         <please-wait-data-point v-if="pleaseWaitDataPoint" />
 
         <div class="point">
@@ -26,9 +26,9 @@
           </div>
         </div>
 
-        <download-vanilla 
+        <download-vanilla
           :jar="installerUrlJar || ''"
-          :exe="installerUrlExe || ''" 
+          :exe="installerUrlExe || ''"
           v-if="downloadOption == 'vanilla'"
           />
         <download-server
@@ -48,14 +48,22 @@
       </div>
     </section>
 
+    <div class="separator" id="separator-2" />
+
     <section id="join-community">
+      <h1>join our community</h1>
       <div class="wrapper">
-        <h1>join our community</h1>
-        <a href="https://discord.gg/v6v4pMv">
+        <a href="https://discord.gg/v6v4pMv" class="icon-button">
+          <span>Discord</span>
           <g-image alt="Discord Logo" src="~/assets/discord-logo.png" />
         </a>
-        <a href="https://github.com/FabricMC">
+        <a href="https://github.com/FabricMC" class="icon-button">
+          <span>GitHub</span>
           <g-image alt="GitHub Logo" src="~/assets/github-logo.png" />
+        </a>
+        <a href="https://reddit.com/r/FabricMC" class="icon-button">
+          <span>Unofficial Reddit</span>
+          <g-image alt="Reddit Logo" src="~/assets/reddit-logo.png" />
         </a>
       </div>
     </section>
@@ -151,7 +159,7 @@
       </div>
     </section>
 
-    <div class="separator" id="separator-2" />
+    <div class="separator" id="separator-3" />
 
     <section class="columns" id="make-mods--blog">
       <div id="blog" class="column">
@@ -300,7 +308,7 @@ export default {
         console.log(error);
         this.pleaseWaitDataPoint = true;
       })
-      .finally(() => {        
+      .finally(() => {
         clearTimeout(this.pleaseWaitDataPointTimer);
       });
   },
@@ -341,33 +349,13 @@ export default {
 
 <style lang="scss" scoped>
 section#join-community {
-  background: linear-gradient(
-    110deg,
-    var(--brand-dark) 0 15%,
-    var(--brand-light) 15% 45%,
-    var(--brand-dark) 45% 100%
-  );
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3vw), 50% 100%, 0 calc(100% - 3vw));
-  padding: 0.15rem;
-
   .wrapper {
-    background: var(--background);
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3vw), 50% 100%, 0 calc(100% - 3vw));
-    margin: 0.15rem;
-    text-align: center;
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-    h1 {
-      margin-top: 0;
-    }
-
-    a {
-      margin-left: 0.5rem;
-
-      .g-image {
-        height: 2rem;
-        width: 2rem;
-      }
+    & > *:not(:first-child) {
+      margin-left: 1rem;
     }
   }
 }
@@ -388,15 +376,5 @@ section#join-community {
 
 .iniline-code {
   margin-top: 0.5rem;
-}
-
-@media (min-width: 60rem) {
-  section#join-community {
-    padding-top: 0.2rem;
-  }
-
-  section#goals-and-ideas {
-    margin-top: -2rem;
-  }
 }
 </style>
